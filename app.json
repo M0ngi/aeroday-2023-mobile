@@ -4,10 +4,10 @@
     "slug": "aeroday-2023",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./Assets/Images/icon.png",
+    "icon": "./assets/Images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./Assets/Images/splash.png",
+      "image": "./assets/Images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
