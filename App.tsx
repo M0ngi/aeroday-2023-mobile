@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import 'aeroday-2023/config/firebase.ts'
 
 export default function App() {
   return (

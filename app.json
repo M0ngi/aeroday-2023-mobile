@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "aeroday-2023",
+    "name": "Aeroday 2023",
     "slug": "aeroday-2023",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,7 +24,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/Images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package":"com.aeroday.vote2023"
     },
     "web": {
       "favicon": "./assets/Images/favicon.png"
