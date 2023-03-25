@@ -1,10 +1,14 @@
 import React from "react";
 import { IUser } from "../../types";
 
-export type  IAuthState = IUser | null;
+export type  IAuthState = {
+  user: IUser | null;
+  accessToken: string | null;
+  refreshToken: string | null;
+};
 
 export interface IAuthContext{
-  user: IAuthState,
+  auth: IAuthState;
   dispatchAuth: React.Dispatch<AuthActions>;
 }
 
@@ -30,5 +34,5 @@ export type UserPayload = {
   [AuthAct.LOGIN]: {
     user: IUser;
   };
-  [AuthAct.LOGOUT]: {};
+  [AuthAct.LOGOUT]: undefined;
 };

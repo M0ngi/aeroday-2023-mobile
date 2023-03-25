@@ -6,11 +6,11 @@ import AuthNavigator from "./auth_navigator";
 
 
 export default function Navigation(){
-  const { user } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
   return (
     <NavigationContainer>
       {
-        user ? <MainNavigator /> : <AuthNavigator />
+        auth ? <MainNavigator /> : <AuthNavigator />
       }
     </NavigationContainer>
   )
