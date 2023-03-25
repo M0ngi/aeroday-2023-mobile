@@ -1,23 +1,26 @@
-import { UserData } from "../types";
+import { IUser } from "../types";
 
-export async function googleLogin() : Promise<UserData> {
-    const template: UserData = {
+export async function googleLogin() : Promise<IUser> {
+    const template: IUser = {
+        _id: "",
         name: "",
         email: "",
     }
     return template;
 }
 
-export async function emailLogin(email: String, password: String) : Promise<UserData> {
-    const template: UserData = {
+export async function emailLogin(email: String, password: String) : Promise<IUser> {
+    const template: IUser = {
+        _id: "",
         name: "",
         email: "",
     }
     return template;
 }
 
-export async function register(userData: UserData, password: String) : Promise<UserData> {
-    const template: UserData = {
+export async function register(userData: IUser, password: String) : Promise<IUser> {
+    const template: IUser = {
+        _id: "",
         name: "",
         email: "",
     }

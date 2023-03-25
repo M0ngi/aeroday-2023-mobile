@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { AuthContext } from "../../../context/auth_context/auth_context";
+import { AuthAct } from "../../../context/auth_context/types";
 import { LoginScreenProps } from "../../../navigation/types";
 
 export default function LoginScreen({ navigation } : LoginScreenProps){
@@ -10,7 +11,7 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
   const [password, setPassword] = useState("");
 
   const loginHandler = () => {
-    dispatchAuth({type: "LOGIN"})
+    dispatchAuth({type: AuthAct.LOGIN, payload: {user: {_id: "", email: "", name: ""}}})
   }
 
   return (

@@ -1,8 +1,3 @@
-export type UserData = {
-    name: String;
-    email: String;
-}
-
 export type AirshowTeam = {
     teamName: String;
 }
@@ -12,5 +7,7 @@ export type VideographieTeam = {
 }
 
 export interface IUser{
-    userId: string;
+    _id: string;
+    name: String;
+    email: String;
 }
