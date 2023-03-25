@@ -10,3 +10,7 @@ export type AirshowTeam = {
 export type VideographieTeam = {
     teamName: String;
 }
+
+export interface IUser{
+
+}
