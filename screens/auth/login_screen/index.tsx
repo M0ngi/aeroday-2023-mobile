@@ -4,7 +4,7 @@ import { AuthContext } from "../../../context/auth_context/auth_context";
 import { LoginScreenProps } from "../../../navigation/types";
 
 export default function LoginScreen({ navigation } : LoginScreenProps){
-  const {auth, dispatchAuth} = useContext(AuthContext);
+  const {dispatchAuth} = useContext(AuthContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

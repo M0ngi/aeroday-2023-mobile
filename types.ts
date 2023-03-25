@@ -12,5 +12,5 @@ export type VideographieTeam = {
 }
 
 export interface IUser{
-
+    userId: string;
 }

@@ -2,24 +2,21 @@ import React, { createContext, useMemo, useReducer } from "react";
 import { authReducer } from "./auth_reducer";
 import { IAuthContext, IAuthState } from "./types";
 
-const initState : IAuthState = {
-    user: null,
-    loggedin: false,
-}
+const initState : IAuthState = null;
 
 export const AuthContext = createContext<IAuthContext>({
-  auth: initState,
+  user: initState,
   dispatchAuth: () => {}
 });
 
 export const AuthConsumer = AuthContext.Consumer;
 
 export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
-  const [auth, dispatchAuth] = useReducer(authReducer, initState);
+  const [user, dispatchAuth] = useReducer(authReducer, initState);
   
   const contextValue = useMemo(() => {
-    return { auth, dispatchAuth };
-  }, [auth, dispatchAuth]);
+    return { user, dispatchAuth };
+  }, [user, dispatchAuth]);
 
   return (
     <AuthContext.Provider value={contextValue}>

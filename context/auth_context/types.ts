@@ -1,16 +1,13 @@
 import React from "react";
 import { IUser } from "../../types";
 
-export interface IAuthState{
-  user: IUser,
-  loggedin: boolean,
-}
+export type  IAuthState = IUser | null;
 
 export type AuthReducerAction = {
   type: "LOGIN" | "LOGOUT";
 };
 
 export interface IAuthContext{
-  auth: IAuthState,
+  user: IAuthState,
   dispatchAuth: React.Dispatch<AuthReducerAction>;
 }
