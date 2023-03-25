@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
+import { AuthContext } from "../../../context/auth_context/auth_context";
 import { LoginScreenProps } from "../../../navigation/types";
 
 export default function LoginScreen({ navigation } : LoginScreenProps){
+  const {auth, dispatchAuth} = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const loginHandler = () => {
+    dispatchAuth({type: "LOGIN"})
+  }
 
   return (
     <View>
@@ -25,7 +32,7 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
           borderColor: "#000"
         }} 
       />
-      <Button title="Login" />
+      <Button title="Login" onPress={loginHandler} />
       
       <Text onPress={() => navigation.navigate("SignupScreen")}>Signup!</Text>
     </View>

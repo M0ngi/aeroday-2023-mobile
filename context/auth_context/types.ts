@@ -6,7 +6,11 @@ export interface IAuthState{
   loggedin: boolean,
 }
 
+export type AuthReducerAction = {
+  type: "LOGIN" | "LOGOUT";
+};
+
 export interface IAuthContext{
   auth: IAuthState,
-  dispatchAuth: React.Dispatch<any>;
+  dispatchAuth: React.Dispatch<AuthReducerAction>;
 }
