@@ -5,7 +5,6 @@ export type  IAuthState = {
   user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
-  oauthToken: GAuthToken;
 };
 
 export interface IAuthContext{
@@ -33,11 +32,7 @@ export enum AuthAct {
 }
 
 export type UserPayload = {
-  [AuthAct.LOGIN]: {
-    user: IUser | null;
-    accessToken: string | null;
-    refreshToken: string | null;
-  };
+  [AuthAct.LOGIN]: IAuthState;
   [AuthAct.RESTORE]: IAuthState;
   [AuthAct.LOGOUT]: undefined;
 };
@@ -46,5 +41,4 @@ export const loggedOutState : IAuthState = {
   user: null,
   accessToken: null,
   refreshToken: null,
-  oauthToken: null,
 };

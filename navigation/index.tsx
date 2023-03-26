@@ -5,6 +5,8 @@ import MainNavigator from "./main_navigator";
 import AuthNavigator from "./auth_navigator";
 import { AuthAct } from "../context/auth_context/types";
 import loadUser from "../hooks/auth/load_user";
+import LoadingScreen from "../screens/loading_screen";
+import LoadingNavigator from "./loading_navigator";
 
 
 export default function Navigation(){
@@ -16,10 +18,18 @@ export default function Navigation(){
     dispatchAuth({type: AuthAct.RESTORE, payload: userData})
   }, [userData])
 
+  if(isLoading){
+    return (
+      <NavigationContainer>
+        <LoadingNavigator />
+      </NavigationContainer>
+    )
+  }
+
   return (
     <NavigationContainer>
       {
-        auth.user ? <MainNavigator /> : <AuthNavigator />
+        !isLoading && auth.user ? <MainNavigator /> : <AuthNavigator />
       }
     </NavigationContainer>
   )
