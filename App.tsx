@@ -10,7 +10,6 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 
-// import 'aeroday-2023/config/firebase.ts'
 const queryClient = new QueryClient()
 
 export default function App() {
