@@ -3,7 +3,7 @@ import { useContext, useMemo } from 'react';
 import { PUBLIC_API_URL } from '../consts/api';
 import { AuthContext } from '../context/auth_context/auth_context';
 import { AuthAct } from '../context/auth_context/types';
-import getHeaders from '../utils/getHeaders';
+import getHeaders from '../utils/api_utils';
 
 const useAxios = () => {
 	const { auth, dispatchAuth } = useContext(

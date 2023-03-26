@@ -6,12 +6,15 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { Response } from "../types";
 import { LoginRequestDTO, LoginResponseDTO } from "../../DTO/login_dto";
 import { IUser } from "../../types";
-import getHeaders from "../../utils/getHeaders";
+import getHeaders from "../../utils/api_utils";
 import { AuthAct } from "../../context/auth_context/types";
+import { secureSave } from "../../utils/secure_storage";
+import { useLogout } from "./logout";
 
 export function useLogin() {
 	const { axios } = useAxios();
-	const { auth, dispatchAuth } = useContext(AuthContext);
+	const { dispatchAuth } = useContext(AuthContext);
+    const logout = useLogout();
 
 	return useMutation({
 		mutationKey: ['user', 'auth', 'login'],
@@ -26,17 +29,19 @@ export function useLogin() {
 				.then((res: AxiosResponse<Response<IUser>>) => res.data.data)
 				.then((user) => ({ refresh_token, access_token, user }));
 		},
-		onSuccess: ({ refresh_token, access_token, user }) => {
-			dispatchAuth({type: AuthAct.LOGIN, payload:{
+		onSuccess: async ({ refresh_token, access_token, user }) => {
+            const authState = {
                 user,
                 accessToken: access_token,
                 refreshToken: refresh_token,
-            }})
+            }
+            await secureSave("authState", authState);
+			dispatchAuth({type: AuthAct.LOGIN, payload: authState})
 		},
-		// onError: (error) => {
-		// 	logout();
-		// 	notify({ type: 'error', message: error.response?.data.message });
-		// },
+		onError: (error) => {
+			logout.mutate();
+			// notify({ type: 'error', message: error.response?.data.message });
+		},
 		cacheTime: 0,
 	});
 }
