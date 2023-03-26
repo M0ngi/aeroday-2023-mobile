@@ -11,3 +11,5 @@ export interface IUser{
     name: String;
     email: String;
 }
+
+export type GAuthToken = string | null;

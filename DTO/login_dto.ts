@@ -7,3 +7,7 @@ export type LoginRequestDTO = {
     email: string;
     password: string;
 }
+
+export type GLoginRequestDTO = {
+    oauthToken: string;
+}

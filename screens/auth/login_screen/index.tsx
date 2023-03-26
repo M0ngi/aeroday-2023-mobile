@@ -2,12 +2,13 @@ import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { AuthContext } from "../../../context/auth_context/auth_context";
 import { AuthAct } from "../../../context/auth_context/types";
+import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
 import { useLogin } from "../../../hooks/auth/login";
 import { LoginScreenProps } from "../../../navigation/types";
 
 export default function LoginScreen({ navigation } : LoginScreenProps){
-  // const {dispatchAuth} = useContext(AuthContext);
   const login = useLogin();
+  const googleAuth = useGoogleOAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +18,10 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
       email,
       password,
     })
-    // dispatchAuth({type: AuthAct.LOGIN, payload: {user: {_id: "", email: "", name: ""}}})
+  }
+
+  const googleLoginHandler = () => {
+    googleAuth.login()
   }
 
   if(login.isLoading){
@@ -48,6 +52,7 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
         }} 
       />
       <Button title="Login" onPress={loginHandler} />
+      <Button title="Google login" onPress={googleLoginHandler} />
       
       <Text onPress={() => navigation.navigate("SignupScreen")}>Signup!</Text>
     </View>
