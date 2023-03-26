@@ -10,7 +10,7 @@ export default function Navigation(){
   return (
     <NavigationContainer>
       {
-        auth ? <MainNavigator /> : <AuthNavigator />
+        auth.user ? <MainNavigator /> : <AuthNavigator />
       }
     </NavigationContainer>
   )

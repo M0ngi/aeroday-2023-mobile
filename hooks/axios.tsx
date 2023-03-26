@@ -3,6 +3,7 @@ import { useContext, useMemo } from 'react';
 import { PUBLIC_API_URL } from '../consts/api';
 import { AuthContext } from '../context/auth_context/auth_context';
 import { AuthAct } from '../context/auth_context/types';
+import getHeaders from '../utils/getHeaders';
 
 const useAxios = () => {
 	const { auth, dispatchAuth } = useContext(
@@ -12,9 +13,7 @@ const useAxios = () => {
 	const axiosInstance = useMemo<AxiosInstance>(() => {
 		const instance = axios.create({
 			baseURL: PUBLIC_API_URL,
-			headers: auth.accessToken ? {
-        Authorization: auth.accessToken
-      } : {},
+			headers: getHeaders(auth.accessToken),
 		});
 
 		instance.interceptors.response.use(null, async (response) => {

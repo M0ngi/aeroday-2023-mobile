@@ -31,8 +31,6 @@ export enum AuthAct {
 }
 
 export type UserPayload = {
-  [AuthAct.LOGIN]: {
-    user: IUser;
-  };
+  [AuthAct.LOGIN]: IAuthState;
   [AuthAct.LOGOUT]: undefined;
 };

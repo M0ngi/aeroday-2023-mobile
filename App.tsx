@@ -5,8 +5,13 @@ import { useEffect, useState } from 'react';
 import { AuthConsumer, AuthProvider } from './context/auth_context/auth_context';
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from './navigation';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
 
 // import 'aeroday-2023/config/firebase.ts'
+const queryClient = new QueryClient()
 
 export default function App() {
   const [connected, setConnected] = useState(false);
@@ -19,25 +24,18 @@ export default function App() {
   }, [])
 
   return (
-    <AuthProvider>
-      <AuthConsumer>
-        {(context)=>{
-          return (
-            <SafeAreaProvider>
-              <Navigation />
-            </SafeAreaProvider>
-          )
-        }}
-      </AuthConsumer>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <AuthConsumer>
+          {(context)=>{
+            return (
+              <SafeAreaProvider>
+                <Navigation />
+              </SafeAreaProvider>
+            )
+          }}
+        </AuthConsumer>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
