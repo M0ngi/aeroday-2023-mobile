@@ -6,7 +6,7 @@ export const authReducer = (state: IAuthState, action: AuthActions) : IAuthState
             return action.payload;
         }
         case AuthAct.LOGOUT: {
-            return null;
+            return {user: null, accessToken: null, refreshToken: null};
         }
     }
 }
