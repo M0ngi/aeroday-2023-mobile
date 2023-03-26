@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import * as Network from 'expo-network';
 import { useEffect, useState } from 'react';
 import { AuthConsumer, AuthProvider } from './context/auth_context/auth_context';
@@ -22,6 +22,16 @@ export default function App() {
         setConnected(state.isConnected && state.isInternetReachable);
       })
   }, [])
+  
+  if(!connected){
+    return (
+      <View>
+        <Text>
+          You are offline
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
