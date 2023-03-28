@@ -9,7 +9,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { AppProvider } from './context/app_context/app_context';
+import { AppConsumer, AppProvider } from './context/app_context/app_context';
+import LoadingScreen from './screens/loading_screen';
 
 const queryClient = new QueryClient()
 
@@ -36,11 +37,22 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AppProvider>
-        <AuthProvider>
-          <SafeAreaProvider>
-            <Navigation />
-          </SafeAreaProvider>
-        </AuthProvider>
+        <AppConsumer>
+          {
+            (context) => {
+              return (
+                <>
+                  <AuthProvider>
+                    <SafeAreaProvider>
+                      <Navigation />
+                    </SafeAreaProvider>
+                  </AuthProvider>
+                  {context.appState.loading && <LoadingScreen />}
+                </>
+              )
+            }
+          }
+        </AppConsumer>
       </AppProvider>
     </QueryClientProvider>
   );

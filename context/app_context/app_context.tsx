@@ -18,11 +18,7 @@ export const AppProvider = ({ children }: { children?: React.ReactNode }) => {
 
   return (
     <AppContext.Provider value={contextValue}>
-        <AppConsumer>
-            {
-                (context) => children
-            }
-        </AppConsumer>
+        {children}
     </AppContext.Provider>
   );
 }
