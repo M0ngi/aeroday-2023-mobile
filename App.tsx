@@ -9,6 +9,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import { AppProvider } from './context/app_context/app_context';
 
 const queryClient = new QueryClient()
 
@@ -34,17 +35,13 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <AuthConsumer>
-          {(context)=>{
-            return (
-              <SafeAreaProvider>
-                <Navigation />
-              </SafeAreaProvider>
-            )
-          }}
-        </AuthConsumer>
-      </AuthProvider>
+      <AppProvider>
+        <AuthProvider>
+          <SafeAreaProvider>
+            <Navigation />
+          </SafeAreaProvider>
+        </AuthProvider>
+      </AppProvider>
     </QueryClientProvider>
   );
 }

@@ -5,7 +5,6 @@ import MainNavigator from "./main_navigator";
 import AuthNavigator from "./auth_navigator";
 import { AuthAct } from "../context/auth_context/types";
 import loadUser from "../hooks/auth/load_user";
-import LoadingScreen from "../screens/loading_screen";
 import LoadingNavigator from "./loading_navigator";
 
 
@@ -29,7 +28,7 @@ export default function Navigation(){
   return (
     <NavigationContainer>
       {
-        !isLoading && auth.user ? <MainNavigator /> : <AuthNavigator />
+        auth.user ? <MainNavigator /> : <AuthNavigator />
       }
     </NavigationContainer>
   )
