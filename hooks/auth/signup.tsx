@@ -1,0 +1,41 @@
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth_context/auth_context";
+import useAxios from "../axios";
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError, AxiosResponse } from 'axios';
+import { Response } from "../types";
+import { LoginResponseDTO } from "../../DTO/login_dto";
+import { IUser } from "../../types";
+import getHeaders from "../../utils/api_utils";
+import { AuthAct } from "../../context/auth_context/types";
+import { secureSave } from "../../utils/secure_storage";
+import { useLogout } from "./logout";
+import { SignUpDTO } from "../../DTO/signup_dto";
+import { useLogin } from "./login";
+
+export function useSignUp() {
+    const { axios } = useAxios();
+    const { dispatchAuth } = useContext(AuthContext);
+    const logout = useLogout();
+    const login = useLogin();
+    return useMutation({
+        mutationKey: ['user', 'auth', 'signup'],
+        mutationFn: async (credentials: SignUpDTO) => {
+            const { access_token, refresh_token } = await axios
+                .post('/auth/register', credentials)
+                .then(
+                    (res: AxiosResponse<Response<LoginResponseDTO>>) => res.data.data,
+                );
+            return credentials;
+        },
+        onSuccess: (credentials) => {
+
+            login.mutate({ email: credentials.email, password: credentials.password })
+        },
+        onError: (error) => {
+            logout.mutate();
+            // notify({ type: 'error', message: error.response?.data.message });
+        },
+        cacheTime: 0,
+    });
+}
