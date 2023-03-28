@@ -1,6 +1,6 @@
 const getHeaders = (accessToken) => {
     return accessToken ? {
-        Authorization: accessToken
+        Authorization: `Bearer ${accessToken}`
     } : {}
 }
 
