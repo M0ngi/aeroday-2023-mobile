@@ -1,31 +1,57 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
+import { useSignUp } from "../../../hooks/auth/signup";
 import { SignupScreenProps } from "../../../navigation/types";
 
-export default function SignupScreen({navigation}: SignupScreenProps){
+export default function SignupScreen({ navigation }: SignupScreenProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [fullname, setFullName] = useState("");
+  const signup = useSignUp()
+  const signupHandler = () => {
+    signup.mutate({
+      fullname,
+      email,
+      password,
+    })
+  }
+
   return (
     <View>
       <Text>Signup Screen</Text>
-      <TextInput 
+      <TextInput
+        value={fullname}
+        onChangeText={setFullName}
+        style={{
+          padding: 4,
+          margin: 4,
+          borderWidth: 2,
+          borderColor: "#000"
+        }}
+      />
+      <TextInput
+
         value={email}
         onChangeText={setEmail}
         style={{
-          borderWidth: 2, 
+          padding: 4,
+          margin: 4,
+          borderWidth: 2,
           borderColor: "#000"
-        }} 
+        }}
       />
-      <TextInput 
+      <TextInput
         value={password}
         onChangeText={setPassword}
         style={{
-          borderWidth: 2, 
+
+          padding: 4,
+          margin: 4,
+          borderWidth: 2,
           borderColor: "#000"
-        }} 
+        }}
       />
-      <Button title="Signup" />
+      <Button title="Signup" onPress={signupHandler} />
 
       <Text onPress={() => navigation.navigate("LoginScreen")}>Login!</Text>
     </View>
