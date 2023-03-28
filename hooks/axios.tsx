@@ -1,6 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 import { useContext, useMemo } from 'react';
 import { PUBLIC_API_URL } from '../consts/api';
+import { AppContext } from '../context/app_context/app_context';
+import { AppAct } from '../context/app_context/types';
 import { AuthContext } from '../context/auth_context/auth_context';
 import { AuthAct } from '../context/auth_context/types';
 import getHeaders from '../utils/api_utils';
@@ -8,6 +10,7 @@ import { useRefreshToken } from './auth/refresh_token';
 
 const useAxios = () => {
 	const refreshToken = useRefreshToken()
+	const { dispatchApp } = useContext(AppContext);
 	const { auth, dispatchAuth } = useContext(
 		AuthContext,
 	);
@@ -18,7 +21,17 @@ const useAxios = () => {
 			headers: getHeaders(auth.accessToken),
 		});
 
-		instance.interceptors.response.use(null, async (response) => {
+		instance.interceptors.request.use((request) => {
+			dispatchApp({type: AppAct.LOAD_ON})
+
+			return request;
+		})
+
+		instance.interceptors.response.use((response) => {
+			dispatchApp({type: AppAct.LOAD_OFF})
+			return response;
+		}, async (response) => {
+			dispatchApp({type: AppAct.LOAD_OFF})
 			// Unauthorized
 			if (response.response.status === 401) refreshToken.mutate()
 			return Promise.reject(response);

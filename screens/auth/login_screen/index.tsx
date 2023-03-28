@@ -24,14 +24,6 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
     googleAuth.login()
   }
 
-  if(login.isLoading){
-    return (
-      <View>
-        <Text>Login Screen Loading</Text>
-      </View>
-    );
-  }
-
   return (
     <View>
       <Text>Login Screen</Text>

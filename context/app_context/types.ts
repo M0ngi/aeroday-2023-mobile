@@ -28,10 +28,14 @@ export enum AppAct {
     ERROR = "LOGIN",
     RESET = "RESET",
     INFO = "INFO",
+    LOAD_ON = "LOAD_ON",
+    LOAD_OFF = "LOAD_OFF",
 }
   
 export type AppPayload = {
     [AppAct.RESET]: undefined;
+    [AppAct.LOAD_ON]: undefined;
+    [AppAct.LOAD_OFF]: undefined;
     [AppAct.ERROR]: {
         error: string;
     };

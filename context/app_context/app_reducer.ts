@@ -11,5 +11,12 @@ export const appReducer = (state: IAppState, action: AppActions) : IAppState => 
         case AppAct.RESET: {
             return defaultState;
         }
+
+        case AppAct.LOAD_OFF: {
+            return {...state, loading: false};
+        }
+        case AppAct.LOAD_ON: {
+            return {...state, loading: true};
+        }
     }
 }
