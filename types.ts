@@ -1,10 +1,14 @@
-export type AirshowTeam = {
-    teamName: String;
+export interface ParticipantTeam{
+    _id: String;
+    name: String;
+    university: String;
+    competition: 'airshow' | 'videographie';
+    members: String[];
 }
 
-export type VideographieTeam = {
-    teamName: String;
-}
+export interface AirshowTeam extends ParticipantTeam {}
+
+export interface VideographieTeam extends ParticipantTeam {}
 
 export interface IUser{
     _id: string;
