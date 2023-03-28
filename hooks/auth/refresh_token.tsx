@@ -8,19 +8,22 @@ import { LoginRequestDTO, LoginResponseDTO } from "../../DTO/login_dto";
 import { IUser } from "../../types";
 import getHeaders from "../../utils/api_utils";
 import { AuthAct } from "../../context/auth_context/types";
-import { secureSave } from "../../utils/secure_storage";
-import { useLogout } from "./logout";
+import { secureDelete, secureSave } from "../../utils/secure_storage";
 import axios from "axios";
+import { PUBLIC_API_URL } from "../../consts/api";
 
 export function useRefreshToken() {
     // const { axios } = useAxios();
-    const { dispatchAuth } = useContext(AuthContext);
-    const logout = useLogout();
+    const { auth, dispatchAuth } = useContext(AuthContext);
 
     return useMutation({
         mutationKey: ['user', 'auth', 'refresh_token'],
         mutationFn: async () => {
-            const { access_token, refresh_token } = await axios
+            const inst = axios.create({
+                baseURL: PUBLIC_API_URL,
+                headers: getHeaders(auth.accessToken),
+            });
+            const { access_token, refresh_token } = await inst
                 .post('/auth/refresh')
                 .then(
                     (res: AxiosResponse<Response<LoginResponseDTO>>) => res.data.data,
@@ -28,16 +31,17 @@ export function useRefreshToken() {
             return { access_token, refresh_token }
         },
         onSuccess: async ({ refresh_token, access_token }) => {
-            // const authState = {
-            //     user,
-            //     accessToken: access_token,
-            //     refreshToken: refresh_token,
-            // }
-            // await secureSave("authState", authState);
+            const authState = {
+                user: auth.user,
+                accessToken: access_token,
+                refreshToken: refresh_token,
+            }
+            await secureSave("authState", authState);
             dispatchAuth({ type: AuthAct.REFRESH, payload: { refreshToken: refresh_token, accessToken: access_token } })
         },
-        onError: (error) => {
-            logout.mutate();
+        onError: async (error) => {
+			await secureDelete("authState");
+            dispatchAuth({type: AuthAct.LOGOUT})
             // notify({ type: 'error', message: error.response?.data.message });
         },
         cacheTime: 0,
