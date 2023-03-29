@@ -22,8 +22,8 @@ export interface IScheduleSection{
     title: String;
     location: String;
     details: String[];
-    startTime: Date;
-    endTime: Date;
+    startTime: String;
+    endTime: String;
 }
 
 export type Schedule = IScheduleSection[];

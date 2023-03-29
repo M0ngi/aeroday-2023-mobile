@@ -24,6 +24,7 @@ export function useGetSchedule() {
 					error: "Error occured while fetching schedule." 
 				}
 			})
-		}
+		},
+		cacheTime: 2*60*1000, // 2mn
 	});
 }

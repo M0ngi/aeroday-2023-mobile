@@ -47,6 +47,7 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
       <Button title="Google login" onPress={googleLoginHandler} />
       
       <Text onPress={() => navigation.navigate("SignupScreen")}>Signup!</Text>
+      <Text onPress={() => navigation.navigate("ResetPassScreen")}>Reset Pass</Text>
     </View>
   )
 }
