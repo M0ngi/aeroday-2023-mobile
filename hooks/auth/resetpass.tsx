@@ -23,10 +23,7 @@ export function useResetPassword() {
 			return axios
 			.post('/auth/reset', credentials)
 			.then(
-				(res: AxiosResponse<Response<null>>) => {
-					console.log(res.data)
-					return res.data.data;
-				},
+				(res: AxiosResponse<Response<null>>) => res.data.data,
 			);
 		},
 		onSuccess: async () => {
@@ -36,7 +33,7 @@ export function useResetPassword() {
 			dispatchApp({
 				type: AppAct.ERROR, 
 				payload: { 
-					error: "Unable to request a password reset. Try again." 
+					error: "Unable to change the password. Try again." 
 				}
 			})
 		},
