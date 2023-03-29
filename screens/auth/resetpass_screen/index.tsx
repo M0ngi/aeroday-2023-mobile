@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useResetPassword } from "../../../hooks/auth/resetpass";
 import { useResetPasswordChange } from "../../../hooks/auth/resetpass_change";
 import {  ResetPassScreenProps } from "../../../navigation/types";
@@ -25,7 +26,7 @@ export default function ResetPassScreen({ navigation } : ResetPassScreenProps){
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Reset Pass Screen</Text>
       <TextInput 
         value={email}
@@ -61,6 +62,6 @@ export default function ResetPassScreen({ navigation } : ResetPassScreenProps){
       />
       
       <Text onPress={() => navigation.navigate("LoginScreen")}>Back to login!</Text>
-    </View>
+    </SafeAreaView>
   )
 }

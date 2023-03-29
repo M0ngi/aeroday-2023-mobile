@@ -9,7 +9,7 @@ const authStack = createNativeStackNavigator();
 export default function AuthNavigator(){
   return (
     <authStack.Navigator initialRouteName="LoginScreen">
-      <authStack.Screen name="LoginScreen" component={LoginScreen} />
+      <authStack.Screen name="LoginScreen" component={LoginScreen} options={{headerShown: false}} />
       <authStack.Screen name="SignupScreen" component={SignupScreen} />
       <authStack.Screen name="ResetPassScreen" component={ResetPassScreen} />
     </authStack.Navigator>

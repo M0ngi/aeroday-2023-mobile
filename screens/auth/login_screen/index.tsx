@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { AuthContext } from "../../../context/auth_context/auth_context";
 import { AuthAct } from "../../../context/auth_context/types";
 import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
@@ -25,7 +26,7 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Login Screen</Text>
       <TextInput 
         value={email}
@@ -48,6 +49,6 @@ export default function LoginScreen({ navigation } : LoginScreenProps){
       
       <Text onPress={() => navigation.navigate("SignupScreen")}>Signup!</Text>
       <Text onPress={() => navigation.navigate("ResetPassScreen")}>Reset Pass</Text>
-    </View>
+    </SafeAreaView>
   )
 }

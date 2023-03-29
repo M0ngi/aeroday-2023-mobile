@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useSignUp } from "../../../hooks/auth/signup";
 import { SignupScreenProps } from "../../../navigation/types";
 
@@ -17,7 +18,7 @@ export default function SignupScreen({ navigation }: SignupScreenProps) {
   }
 
   return (
-    <View>
+    <SafeAreaView>
       <Text>Signup Screen</Text>
       <TextInput
         value={fullname}
@@ -54,6 +55,6 @@ export default function SignupScreen({ navigation }: SignupScreenProps) {
       <Button title="Signup" onPress={signupHandler} />
 
       <Text onPress={() => navigation.navigate("LoginScreen")}>Login!</Text>
-    </View>
+    </SafeAreaView>
   )
 }

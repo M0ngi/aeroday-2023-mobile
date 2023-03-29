@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useLogout } from "../../hooks/auth/logout";
 import { useGetSchedule } from "../../hooks/schedule/schedule";
 import { HomeScreenProps } from "../../navigation/types";
@@ -16,7 +17,7 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
     navigation.navigate("ProfileScreen")
   }
   return (
-    <View>
+    <SafeAreaView>
       <Text>Home Screen</Text>
       <Text onPress={openProfile}>Profile</Text>
       <Text onPress={logoutUser}>Logout</Text>
@@ -31,6 +32,6 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
           )
         })
       }
-    </View>
+    </SafeAreaView>
   )
 }

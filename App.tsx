@@ -3,7 +3,7 @@ import { Alert, Text, View } from 'react-native';
 import * as Network from 'expo-network';
 import { useEffect, useState } from 'react';
 import { AuthConsumer, AuthProvider } from './context/auth_context/auth_context';
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Navigation from './navigation';
 import {
   QueryClient,
@@ -36,50 +36,50 @@ export default function App() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppProvider>
-        <AppConsumer>
-          {
-            (context) => {
-              if(context.appState.error){
-                Alert.alert("Error", context.appState.error,[
-                  {
-                    text: "Exit"
-                  }
-                ],{
-                  onDismiss: () => {
-                    context.dispatchApp({type: AppAct.RESET})
-                  },
-                  cancelable: true
-                })
-              }
+    <SafeAreaProvider >
+      <QueryClientProvider client={queryClient}>
+        <AppProvider>
+          <AppConsumer>
+            {
+              (context) => {
+                if(context.appState.error){
+                  Alert.alert("Error", context.appState.error,[
+                    {
+                      text: "Exit"
+                    }
+                  ],{
+                    onDismiss: () => {
+                      context.dispatchApp({type: AppAct.RESET})
+                    },
+                    cancelable: true
+                  })
+                }
 
-              if(context.appState.info){
-                Alert.alert("Info", context.appState.info,[
-                  {
-                    text: "Exit"
-                  }
-                ],{
-                  onDismiss: () => {
-                    context.dispatchApp({type: AppAct.RESET})
-                  },
-                  cancelable: true
-                })
-              }
-              return (
-                <>
-                  <AuthProvider>
-                    <SafeAreaProvider>
+                if(context.appState.info){
+                  Alert.alert("Info", context.appState.info,[
+                    {
+                      text: "Exit"
+                    }
+                  ],{
+                    onDismiss: () => {
+                      context.dispatchApp({type: AppAct.RESET})
+                    },
+                    cancelable: true
+                  })
+                }
+                return (
+                  <>
+                    <AuthProvider>
                       <Navigation />
-                    </SafeAreaProvider>
-                  </AuthProvider>
-                  {context.appState.loading && <LoadingScreen />}
-                </>
-              )
+                    </AuthProvider>
+                    {context.appState.loading && <LoadingScreen />}
+                  </>
+                )
+              }
             }
-          }
-        </AppConsumer>
-      </AppProvider>
-    </QueryClientProvider>
+          </AppConsumer>
+        </AppProvider>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 }
