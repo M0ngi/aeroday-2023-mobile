@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import * as Network from 'expo-network';
 import { useEffect, useState } from 'react';
 import { AuthConsumer, AuthProvider } from './context/auth_context/auth_context';
@@ -11,6 +11,7 @@ import {
 } from '@tanstack/react-query'
 import { AppConsumer, AppProvider } from './context/app_context/app_context';
 import LoadingScreen from './screens/loading_screen';
+import { AppAct } from './context/app_context/types';
 
 const queryClient = new QueryClient()
 
@@ -40,6 +41,31 @@ export default function App() {
         <AppConsumer>
           {
             (context) => {
+              if(context.appState.error){
+                Alert.alert("Error", context.appState.error,[
+                  {
+                    text: "Exit"
+                  }
+                ],{
+                  onDismiss: () => {
+                    context.dispatchApp({type: AppAct.RESET})
+                  },
+                  cancelable: true
+                })
+              }
+
+              if(context.appState.info){
+                Alert.alert("Info", context.appState.info,[
+                  {
+                    text: "Exit"
+                  }
+                ],{
+                  onDismiss: () => {
+                    context.dispatchApp({type: AppAct.RESET})
+                  },
+                  cancelable: true
+                })
+              }
               return (
                 <>
                   <AuthProvider>

@@ -30,11 +30,15 @@ const useAxios = () => {
 		instance.interceptors.response.use((response) => {
 			dispatchApp({type: AppAct.LOAD_OFF})
 			return response;
-		}, async (response) => {
+		}, async (error) => {
 			dispatchApp({type: AppAct.LOAD_OFF})
 			// Unauthorized
-			if (response.response.status === 401) refreshToken.mutate()
-			return Promise.reject(response);
+			if (error.response.status === 401){
+				await refreshToken.mutateAsync();
+				error.config.__isRetryRequest = true
+				return axios(error.config)
+			}
+			return Promise.reject(error);
 		});
 
 		return instance;

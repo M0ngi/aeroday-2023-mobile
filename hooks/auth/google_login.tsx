@@ -10,10 +10,13 @@ import getHeaders from "../../utils/api_utils";
 import { AuthAct } from "../../context/auth_context/types";
 import { secureSave } from "../../utils/secure_storage";
 import { useLogout } from "./logout";
+import { AppContext } from "../../context/app_context/app_context";
+import { AppAct } from "../../context/app_context/types";
 
 export function useGoogleLogin() {
 	const { axios } = useAxios();
 	const { dispatchAuth } = useContext(AuthContext);
+	const { dispatchApp } = useContext(AppContext);
     const logout = useLogout();
 
 	return useMutation({
@@ -40,8 +43,10 @@ export function useGoogleLogin() {
 		},
 		onError: (error) => {
 			logout.mutate();
+			dispatchApp({type: AppAct.ERROR, payload: { error: "Unable to login using Gmail. Try again." }})
 			// notify({ type: 'error', message: error.response?.data.message });
 		},
+		retry: 2,
 		cacheTime: 0,
 	});
 }

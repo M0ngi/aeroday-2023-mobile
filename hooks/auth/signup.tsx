@@ -12,12 +12,17 @@ import { secureSave } from "../../utils/secure_storage";
 import { useLogout } from "./logout";
 import { SignUpDTO } from "../../DTO/signup_dto";
 import { useLogin } from "./login";
+import { AppContext } from "../../context/app_context/app_context";
+import { AppAct } from "../../context/app_context/types";
 
 export function useSignUp() {
     const { axios } = useAxios();
+	const { dispatchApp } = useContext(AppContext);
     const { dispatchAuth } = useContext(AuthContext);
+
     const logout = useLogout();
     const login = useLogin();
+
     return useMutation({
         mutationKey: ['user', 'auth', 'signup'],
         mutationFn: async (credentials: SignUpDTO) => {
@@ -33,6 +38,12 @@ export function useSignUp() {
             login.mutate({ email: credentials.email, password: credentials.password })
         },
         onError: (error) => {
+            dispatchApp({
+				type: AppAct.ERROR, 
+				payload: { 
+					error: "Unable to register account." 
+				}
+			})
             logout.mutate();
             // notify({ type: 'error', message: error.response?.data.message });
         },
