@@ -17,3 +17,13 @@ export interface IUser{
 }
 
 export type GAuthToken = string | null;
+
+export interface IScheduleSection{
+    title: String;
+    location: String;
+    details: String[];
+    startTime: Date;
+    endTime: Date;
+}
+
+export type Schedule = IScheduleSection[];
