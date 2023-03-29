@@ -10,7 +10,7 @@ import getHeaders from "../../utils/api_utils";
 import { AuthAct } from "../../context/auth_context/types";
 import { secureSave } from "../../utils/secure_storage";
 import { useLogout } from "./logout";
-import { SignUpDTO } from "../../DTO/signup_dto";
+import { SignUpRequestDTO } from "../../DTO/signup_dto";
 import { useLogin } from "./login";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
@@ -25,7 +25,7 @@ export function useSignUp() {
 
     return useMutation({
         mutationKey: ['user', 'auth', 'signup'],
-        mutationFn: async (credentials: SignUpDTO) => {
+        mutationFn: async (credentials: SignUpRequestDTO) => {
             const { access_token, refresh_token } = await axios
                 .post('/auth/register', credentials)
                 .then(
