@@ -5,6 +5,7 @@ import AuthNavButtons from "../../../components/auth_nav_buttons";
 import LoginSection from "../../../components/login_section";
 import SignupSection from "../../../components/signup_section";
 import Colors from "../../../consts/colors";
+import GlobalStyles from "../../../consts/styles";
 import { AuthScreenProps } from "../../../navigation/types";
 
 export default function AuthScreen({ navigation } : AuthScreenProps){
@@ -18,7 +19,7 @@ export default function AuthScreen({ navigation } : AuthScreenProps){
   }
 
   return (
-    <SafeAreaView style={style.bg}>
+    <SafeAreaView style={GlobalStyles.background}>
       <View style={style.logoContainer}>
         <Image style={style.logo} source={require("./../../../assets/Images/logo.png")} />
       </View>
@@ -38,14 +39,6 @@ const style = StyleSheet.create({
   logo:{
     width: "80%",
     resizeMode: "contain"
-  },
-  bg: {
-    backgroundColor: Colors.background,
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "flex-end"
   },
   container: {
     width: "100%",
