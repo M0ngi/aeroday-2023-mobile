@@ -22,9 +22,9 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
       <Text onPress={openProfile}>Profile</Text>
       <Text onPress={logoutUser}>Logout</Text>
       {
-        data && data.map((section)=>{
+        data && data.map((section, idx)=>{
           return (
-            <View>
+            <View key={idx}>
               <Text>{section.title}</Text>
               <Text>{section.startTime}</Text>
               <Text>{section.endTime}</Text>

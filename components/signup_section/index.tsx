@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
 import { useSignUp } from "../../hooks/auth/signup";
+import InputBox from "../InputBox";
 
 export default function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -25,27 +26,9 @@ export default function SignupScreen() {
   return (
     <View style={style.container}>
         <View style={style.txtEditContainer}>
-            <TextInput 
-                value={fullname}
-                onChangeText={setFullName}
-                style={style.textEdit}
-                placeholder="Name"
-                placeholderTextColor="#A1A1A1"
-            />
-            <TextInput 
-                value={email}
-                onChangeText={setEmail}
-                style={style.textEdit}
-                placeholder="Email"
-                placeholderTextColor="#A1A1A1"
-            />
-            <TextInput 
-                value={password}
-                onChangeText={setPassword}
-                style={style.textEdit}
-                placeholder="Password"
-                placeholderTextColor="#A1A1A1"
-            />
+            <InputBox value={fullname} onChange={setFullName} placeholder="Name" />
+            <InputBox value={email} onChange={setEmail} placeholder="Email" />
+            <InputBox value={password} onChange={setPassword} placeholder="Password" />
         </View>
 
         <View style={{borderRadius: 50, width: "60%", overflow: "hidden"}}>

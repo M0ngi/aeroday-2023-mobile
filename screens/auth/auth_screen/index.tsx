@@ -4,6 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import AuthNavButtons from "../../../components/auth_nav_buttons";
 import LoginSection from "../../../components/login_section";
 import SignupSection from "../../../components/signup_section";
+import Colors from "../../../consts/colors";
 import { AuthScreenProps } from "../../../navigation/types";
 
 export default function AuthScreen({ navigation } : AuthScreenProps){
@@ -39,7 +40,7 @@ const style = StyleSheet.create({
     resizeMode: "contain"
   },
   bg: {
-    backgroundColor: "#151E27",
+    backgroundColor: Colors.background,
     height: "100%",
     width: "100%",
     display: "flex",
@@ -49,7 +50,7 @@ const style = StyleSheet.create({
   container: {
     width: "100%",
     height: "70%",
-    backgroundColor: "#222A35",
+    backgroundColor: Colors.lightGray,
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
