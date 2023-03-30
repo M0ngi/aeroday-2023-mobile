@@ -1,4 +1,4 @@
-export interface ParticipantTeam{
+export interface ParticipantTeam {
     _id: String;
     name: String;
     university: String;
@@ -6,19 +6,21 @@ export interface ParticipantTeam{
     members: String[];
 }
 
-export interface AirshowTeam extends ParticipantTeam {}
+export interface AirshowTeam extends ParticipantTeam { }
 
-export interface VideographieTeam extends ParticipantTeam {}
+export interface VideographieTeam extends ParticipantTeam { }
 
-export interface IUser{
+export interface IUser {
     _id: string;
     name: String;
     email: String;
+    airshowVote: String | null;
+    vdpVote: String | null;
 }
 
 export type GAuthToken = string | null;
 
-export interface IScheduleSection{
+export interface IScheduleSection {
     title: string;
     location: string;
     details: string[];

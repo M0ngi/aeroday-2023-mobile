@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
       </View>
       <View style={styles.scheduleContainer}>
         {
-          data && data.map((section, idx)=>{
+          data && data.map((section, idx) => {
             return (
               <ScheduleSection {...section} key={idx} />
             )
@@ -30,11 +30,11 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
 }
 
 const styles = StyleSheet.create({
-  titleContainer:{
+  titleContainer: {
     marginTop: 25,
     marginLeft: 25,
   },
-  scheduleContainer:{
+  scheduleContainer: {
     marginTop: 25,
     width: "80%",
     alignSelf: "center",

@@ -8,7 +8,7 @@ import VoteScreen from "../screens/vote_screen";
 
 const mainStack = createBottomTabNavigator();
 
-export default function MainNavigator(){
+export default function MainNavigator() {
   return (
     <mainStack.Navigator 
       initialRouteName="Home" 
