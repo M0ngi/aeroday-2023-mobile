@@ -61,14 +61,6 @@ loginBtn:{
     fontSize: 30,
     fontWeight: "bold",
 },
-textEdit: {
-    borderBottomWidth: 1, 
-    borderColor: "#E1E1E1",
-    width: "100%",
-    marginTop: 10,
-    color: "#fff",
-    height: 40,
-},
 txtEditContainer: {
     width: "80%",
 },
