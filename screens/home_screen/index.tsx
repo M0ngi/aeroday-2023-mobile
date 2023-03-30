@@ -9,24 +9,13 @@ import { useLogout } from "../../hooks/auth/logout";
 import { useGetSchedule } from "../../hooks/schedule/schedule";
 import { HomeScreenProps } from "../../navigation/types";
 
-export default function HomeScreen({ navigation }: HomeScreenProps) {
-  const logout = useLogout();
+export default function HomeScreen({ navigation } : HomeScreenProps){
   const { data } = useGetSchedule();
-
-  const logoutUser = () => {
-    logout.mutate();
-  }
-
-  const openProfile = () => {
-    navigation.navigate("ProfileScreen")
-  }
   return (
     <SafeAreaView style={GlobalStyles.background}>
       <View style={styles.titleContainer}>
         <UnderlinedTitle title="Schedule" />
       </View>
-      {/* <Text onPress={openProfile}>Profile</Text>
-      <Text onPress={logoutUser}>Logout</Text> */}
       <View style={styles.scheduleContainer}>
         {
           data && data.map((section, idx) => {
