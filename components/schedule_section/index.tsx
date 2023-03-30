@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingTop: 15,
         paddingBottom: 15,
-        backgroundColor: Colors.lightGray
+        backgroundColor: Colors.lightGray,
+        borderRadius: 8
     },
     title:{
         color: Colors.text,
