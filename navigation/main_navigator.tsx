@@ -8,7 +8,7 @@ const mainStack = createNativeStackNavigator();
 export default function MainNavigator(){
   return (
     <mainStack.Navigator initialRouteName="HomeScreen">
-      <mainStack.Screen name="HomeScreen" component={HomeScreen} />
+      <mainStack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}} />
       <mainStack.Screen name="ProfileScreen" component={ProfileScreen} />
     </mainStack.Navigator>
   )

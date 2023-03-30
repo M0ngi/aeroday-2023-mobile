@@ -19,11 +19,11 @@ export interface IUser{
 export type GAuthToken = string | null;
 
 export interface IScheduleSection{
-    title: String;
-    location: String;
-    details: String[];
-    startTime: String;
-    endTime: String;
+    title: string;
+    location: string;
+    details: string[];
+    startTime: Date;
+    endTime: Date;
 }
 
 export type Schedule = IScheduleSection[];

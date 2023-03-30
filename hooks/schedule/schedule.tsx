@@ -6,6 +6,7 @@ import { Response } from '../types';
 import { AppContext } from '../../context/app_context/app_context';
 import { useContext } from 'react';
 import { AppAct } from '../../context/app_context/types';
+import { ScheduleResponseDTO } from '../../DTO/schedule_dto';
 
 export function useGetSchedule() {
 	const { dispatchApp } = useContext(AppContext);
@@ -16,7 +17,11 @@ export function useGetSchedule() {
 		queryFn: () =>
 			axios
 				.get('/schedule')
-				.then((res: AxiosResponse<Response<Schedule>>) => res.data.data),
+				.then((res: AxiosResponse<Response<ScheduleResponseDTO>>) => {
+					return res.data.data.map((element) => {
+						return {...element, startTime: new Date(element.startTime), endTime: new Date(element.endTime)}
+					})
+				}),
         onError: (error)=>{
 			dispatchApp({
 				type: AppAct.ERROR, 
