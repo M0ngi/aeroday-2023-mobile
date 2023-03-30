@@ -1,8 +1,7 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 type AuthStackParamList = {
-  LoginScreen: undefined;
-  SignupScreen: undefined;
+  AuthScreen: undefined;
   ResetPassScreen: undefined;
 };
 
@@ -11,8 +10,7 @@ type MainStackParamList = {
   ProfileScreen: undefined;
 };
 
-export type LoginScreenProps = NativeStackScreenProps<AuthStackParamList, 'LoginScreen'>;  
-export type SignupScreenProps = NativeStackScreenProps<AuthStackParamList, 'SignupScreen'>;
+export type AuthScreenProps = NativeStackScreenProps<AuthStackParamList, 'AuthScreen'>;  
 export type ResetPassScreenProps = NativeStackScreenProps<AuthStackParamList, 'ResetPassScreen'>;
 
 export type HomeScreenProps = NativeStackScreenProps<MainStackParamList, 'HomeScreen'>;  

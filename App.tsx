@@ -1,22 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
 import { Alert, Text, View } from 'react-native';
 import * as Network from 'expo-network';
-import { useEffect, useState } from 'react';
-import { AuthConsumer, AuthProvider } from './context/auth_context/auth_context';
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useContext, useEffect, useState } from 'react';
+import { AuthProvider } from './context/auth_context/auth_context';
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navigation from './navigation';
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import { AppConsumer, AppProvider } from './context/app_context/app_context';
+import { AppConsumer, AppContext, AppProvider } from './context/app_context/app_context';
 import LoadingScreen from './screens/loading_screen';
 import { AppAct } from './context/app_context/types';
+import { useFonts } from 'expo-font';
 
 const queryClient = new QueryClient()
 
 export default function App() {
+  const { dispatchApp } = useContext(AppContext);
   const [connected, setConnected] = useState(false);
+  const [loaded, error] = useFonts({
+    "Open Sans Bold": require("./assets/fonts/Open_Sans/OpenSans-Bold.ttf"),
+    "Open Sans": require("./assets/fonts/Open_Sans/OpenSans-Regular.ttf"),
+  })
+
+  useEffect(()=>{
+    if(loaded) dispatchApp({type: AppAct.LOAD_OFF})
+    else dispatchApp({type: AppAct.LOAD_ON})
+  }, [loaded])
 
   useEffect(()=>{
     Network.getNetworkStateAsync()
