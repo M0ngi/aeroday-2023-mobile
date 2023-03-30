@@ -25,16 +25,15 @@ export default function App() {
   })
 
   useEffect(()=>{
-    if(loaded) dispatchApp({type: AppAct.LOAD_OFF})
-    else dispatchApp({type: AppAct.LOAD_ON})
-  }, [loaded])
-
-  useEffect(()=>{
     Network.getNetworkStateAsync()
       .then((state) =>{
         setConnected(state.isConnected && state.isInternetReachable);
       })
   }, [])
+
+  if(!loaded){
+    return <LoadingScreen />;
+  }
   
   if(!connected){
     return (
