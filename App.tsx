@@ -24,18 +24,18 @@ export default function App() {
     "Open Sans": require("./assets/fonts/Open_Sans/OpenSans-Regular.ttf"),
   })
 
-  useEffect(()=>{
+  useEffect(() => {
     Network.getNetworkStateAsync()
-      .then((state) =>{
+      .then((state) => {
         setConnected(state.isConnected && state.isInternetReachable);
       })
   }, [])
 
-  if(!loaded){
+  if (!loaded) {
     return <LoadingScreen />;
   }
-  
-  if(!connected){
+
+  if (!connected) {
     return (
       <View>
         <Text>
@@ -52,27 +52,27 @@ export default function App() {
           <AppConsumer>
             {
               (context) => {
-                if(context.appState.error){
-                  Alert.alert("Error", context.appState.error,[
+                if (context.appState.error) {
+                  Alert.alert("Error", context.appState.error, [
                     {
                       text: "Exit"
                     }
-                  ],{
+                  ], {
                     onDismiss: () => {
-                      context.dispatchApp({type: AppAct.RESET})
+                      context.dispatchApp({ type: AppAct.RESET })
                     },
                     cancelable: true
                   })
                 }
 
-                if(context.appState.info){
-                  Alert.alert("Info", context.appState.info,[
+                if (context.appState.info) {
+                  Alert.alert("Info", context.appState.info, [
                     {
                       text: "Exit"
                     }
-                  ],{
+                  ], {
                     onDismiss: () => {
-                      context.dispatchApp({type: AppAct.RESET})
+                      context.dispatchApp({ type: AppAct.RESET })
                     },
                     cancelable: true
                   })
