@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button, TouchableOpacity, Image, StyleSheet } fr
 import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
 import { useSignUp } from "../../hooks/auth/signup";
 import InputBox from "../InputBox";
+import RoundedButton from "../RoundedButton";
 
 export default function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -31,9 +32,7 @@ export default function SignupScreen() {
             <InputBox value={password} onChange={setPassword} placeholder="Password" />
         </View>
 
-        <View style={{borderRadius: 50, width: "60%", overflow: "hidden"}}>
-            <Text style={style.loginBtn} onPress={signupHandler}>Signup</Text>
-        </View>
+        <RoundedButton onPress={signupHandler} width="60%" text="Signup" />
         <TouchableOpacity onPress={googleLoginHandler}>
             <Image source={require("./../../assets/Images/Google.png")} />
         </TouchableOpacity>
@@ -43,32 +42,21 @@ export default function SignupScreen() {
 }
 
 const style = StyleSheet.create({
-resetpass:{
-    color: "#fff",
-    fontSize: 14,
-    height: 20,
-    textAlignVertical: "center",
-    marginTop: 10
-},
-loginBtn:{
-    color: "#fff",
-    backgroundColor: "#01BDAF",
-    width: "100%",
-    paddingTop: 5,
-    paddingBottom: 5,
-    textAlign: "center",
-    fontFamily: "Open Sans Bold",
-    fontSize: 30,
-    fontWeight: "bold",
-},
-txtEditContainer: {
-    width: "80%",
-},
-container: {
-    height: "100%",
-    width: "100%",
-    display: "flex",
-    justifyContent: "space-around",
-    alignItems: "center"
-}
+    resetpass:{
+        color: "#fff",
+        fontSize: 14,
+        height: 20,
+        textAlignVertical: "center",
+        marginTop: 10
+    },
+    txtEditContainer: {
+        width: "80%",
+    },
+    container: {
+        height: "100%",
+        width: "100%",
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center"
+    }
 })

@@ -4,6 +4,7 @@ import Colors from "../../consts/colors";
 import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
 import { useLogin } from "../../hooks/auth/login";
 import InputBox from "../InputBox";
+import RoundedButton from "../RoundedButton";
 
 export default function LoginSection(){
     const login = useLogin();
@@ -31,9 +32,8 @@ export default function LoginSection(){
                 <Text style={style.resetpass} onPress={null}>Reset Password</Text>
             </View>
 
-            <View style={{borderRadius: 50, width: "60%", overflow: "hidden"}}>
-                <Text style={style.loginBtn} onPress={loginHandler}>Login</Text>
-            </View>
+            <RoundedButton onPress={loginHandler} width="60%" text="Login" />
+
             <TouchableOpacity onPress={googleLoginHandler}>
                 <Image source={require("./../../assets/Images/Google.png")} />
             </TouchableOpacity>
@@ -49,17 +49,6 @@ const style = StyleSheet.create({
         height: 20,
         textAlignVertical: "center",
         marginTop: 10
-    },
-    loginBtn:{
-        color: Colors.text,
-        backgroundColor: Colors.green,
-        width: "100%",
-        paddingTop: 5,
-        paddingBottom: 5,
-        textAlign: "center",
-        fontFamily: "Open Sans Bold",
-        fontSize: 30,
-        fontWeight: "bold",
     },
     txtEditContainer: {
         width: "80%",
