@@ -1,24 +1,44 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ViewStyle } from "react-native";
 import Colors from "../../consts/colors";
 
 interface IRoundedButton{
-    width?: string;
-    color?: string;
-    borderRadius?: number;
+    style?:{
+        width?: number | string;
+        height?: number | string;
+        color?: string;
+        paddingTop?: number;
+        paddingBottom?: number;
+        borderRadius?: number;
+        fontSize?: number;
+        textColor?: string;
+    };
     text: string;
     onPress: () => void
 }
 
-export default function RoundedButton({text, width, color, onPress, borderRadius} : IRoundedButton){
-    const textStyle = color ? {...style.loginBtn, backgroundColor: color} : {...style.loginBtn};
+export default function RoundedButton({text, style, onPress} : IRoundedButton){
+    const textStyle = {
+        ...styles.loginBtn, 
+        backgroundColor: style?.color ?? styles.loginBtn.backgroundColor,
+        fontSize: style?.fontSize ?? styles.loginBtn.fontSize,
+        paddingBottom: style?.paddingBottom ?? styles.loginBtn.paddingBottom,
+        paddingTop: style?.paddingTop ?? styles.loginBtn.paddingTop,
+        color: style?.textColor ?? styles.loginBtn.color,
+    }
+    const viewStyle: ViewStyle = {
+        borderRadius: style?.borderRadius ?? 50, 
+        width: style?.width ?? "100%", 
+        height: style?.height,
+        overflow: "hidden",
+    }
     return (
-        <View style={{borderRadius: borderRadius ?? 50, width: width ?? "100%", overflow: "hidden"}}>
+        <View style={viewStyle}>
             <Text style={textStyle} onPress={onPress}>{text}</Text>
         </View>
     )
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
     loginBtn:{
         color: "#fff",
         backgroundColor: Colors.green,

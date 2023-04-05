@@ -1,9 +1,9 @@
 export interface ParticipantTeam {
-    _id: String;
-    name: String;
-    university: String;
+    _id: string;
+    name: string;
+    university: string;
     competition: 'airshow' | 'videographie';
-    members: String[];
+    members: string[];
 }
 
 export interface AirshowTeam extends ParticipantTeam { }
@@ -12,10 +12,10 @@ export interface VideographieTeam extends ParticipantTeam { }
 
 export interface IUser {
     _id: string;
-    name: String;
-    email: String;
-    airshowVote: String | null;
-    vdpVote: String | null;
+    name: string;
+    email: string;
+    airshowVote: string | null;
+    vdpVote: string | null;
 }
 
 export type GAuthToken = string | null;

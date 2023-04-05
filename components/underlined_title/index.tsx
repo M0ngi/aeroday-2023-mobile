@@ -3,13 +3,14 @@ import Colors from "../../consts/colors";
 
 interface IUnderlinedTitle{
     title: string;
+    lineWidth?: number;
 }
 
-export default function UnderlinedTitle({title}: IUnderlinedTitle){
+export default function UnderlinedTitle({title, lineWidth}: IUnderlinedTitle){
     return (
         <View style={styles.titleContainer}>
             <Text style={styles.title}>{title}</Text>
-            <View style={styles.underLine}></View>
+            <View style={{...styles.underLine, width: lineWidth ?? 40}}></View>
         </View>
     )
 }
@@ -24,7 +25,6 @@ const styles = StyleSheet.create({
         alignSelf: "flex-start",
     },
     underLine:{
-        width: 40,
         height: 4,
         backgroundColor: Colors.green,
         marginTop: 5,
