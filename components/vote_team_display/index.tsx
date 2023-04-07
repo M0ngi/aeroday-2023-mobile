@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import Colors from "../../consts/colors";
 import { ParticipantTeam } from "../../types"
 import RoundedButton from "../RoundedButton";
+import { LOGO_PLACEHOLDER } from "../../consts/consts";
 
 interface IVoteTeamDisplay{
     team: ParticipantTeam;
@@ -17,9 +18,9 @@ const BoxColors = [
 
 export default function VoteTeamDisplay({team, onVote, index}: IVoteTeamDisplay){
     const btnStyle = {
-        width: "20%", 
-        fontSize: 15, 
-        height: 25,
+        width: "30%", 
+        fontSize: 18, 
+        height: 30,
         paddingTop: 5,
         color: "#fff",
         textColor: "#000"
@@ -35,8 +36,9 @@ export default function VoteTeamDisplay({team, onVote, index}: IVoteTeamDisplay)
                         {team.university}
                     </Text>
                 </View>
-                <RoundedButton onPress={() => {}} text="Vote" style={btnStyle} />
+                <RoundedButton onPress={onVote} text="Vote" style={btnStyle} />
             </View>
+            <Image style={{width: "60%", height: "80%", marginLeft: "20%"}} source={{uri: team.logo ?? LOGO_PLACEHOLDER}} />
         </View>
     )
 }

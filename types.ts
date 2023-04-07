@@ -4,6 +4,7 @@ export interface ParticipantTeam {
     university: string;
     competition: 'airshow' | 'videographie';
     members: string[];
+    logo: string;
 }
 
 export interface AirshowTeam extends ParticipantTeam { }

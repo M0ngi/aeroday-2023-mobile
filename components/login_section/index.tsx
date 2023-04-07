@@ -32,7 +32,7 @@ export default function LoginSection(){
                 <Text style={style.resetpass} onPress={null}>Reset Password</Text>
             </View>
 
-            <RoundedButton onPress={loginHandler} width="60%" text="Login" />
+            <RoundedButton onPress={loginHandler} style={{width: "60%"}} text="Login" />
 
             <TouchableOpacity onPress={googleLoginHandler}>
                 <Image source={require("./../../assets/Images/Google.png")} />
