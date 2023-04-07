@@ -46,7 +46,7 @@ export default function VoteTeamDisplay({team, onVote, index}: IVoteTeamDisplay)
 const styles = StyleSheet.create({
     teamContainer: {
         width: "90%",
-        height: "80%",
+        height: "42%",
         alignSelf: "center",
         borderRadius: 25,
         padding: 20,

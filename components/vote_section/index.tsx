@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     },
     teamDisplay: {
         width: screenWidth(.8), 
-        height: "50%",
+        height: "100%",
     },
 })
