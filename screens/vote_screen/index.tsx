@@ -17,7 +17,7 @@ const SECTIONS = [
   "Videographie"
 ]
 
-export default function VoteScreen(){
+export default function LeaderboardScreen(){
   const [currentStrategy, setCurrentStrategy] = useState<VoteStrategy>(new AirshowVoteStrategy());
   const [currentSection, setCurrentSection] = useState(0);
 

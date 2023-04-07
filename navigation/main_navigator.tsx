@@ -1,7 +1,7 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/home_screen";
-import ProfileScreen from "../screens/profile_screen";
+import LeaderboardScreen from "../screens/leaderboard_screen";
 import BottomTabNav from "../components/bottom_tab_nav";
 import SettingScreen from "../screens/setting_screen";
 import VoteScreen from "../screens/vote_screen";
@@ -25,8 +25,8 @@ export default function MainNavigator() {
           options={{headerShown: false}}
         />
         <mainStack.Screen 
-          name="ProfileScreen"
-          component={ProfileScreen}
+          name="LeaderboardScreen"
+          component={LeaderboardScreen}
           options={{headerShown: false}}
         />
         <mainStack.Screen 

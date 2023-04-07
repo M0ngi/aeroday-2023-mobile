@@ -48,9 +48,9 @@ export default function BottomTabNav({ state, descriptors, navigation }){
             icon: <VoteIcon color={isFocused ? Colors.green : Colors.textGray} />,
             title: "Vote"
           },
-          "ProfileScreen":{
+          "LeaderboardScreen":{
             icon: <ProfileIcon color={isFocused ? Colors.green : Colors.textGray} />,
-            title: "Profile",
+            title: "Leaderboard",
           },
           "SettingScreen":{
             icon: <SettingIcon color={isFocused ? Colors.green : Colors.textGray} />,
