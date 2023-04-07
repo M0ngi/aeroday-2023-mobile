@@ -20,33 +20,20 @@ export function useVDPVote() {
                 .post(path)
                 .then(
                     (res: AxiosResponse<Response<null>>) => {
-                        console.log(res.data.data);
-
                         return res.data.data
                     },)
-            // console.log(result);
-
-
             return result
         },
         onSuccess: () => {
             dispatchApp({ type: AppAct.INFO, payload: { info: "Your vote has been submitted." } })
-            console.log('success');
-
         },
         onError: (error) => {
-
-            console.log(error.response);
             dispatchApp({
                 type: AppAct.ERROR,
                 payload: {
                     error: "Unable to vote. Try again."
                 }
-            }
-
-            )
-            // logout.mutate();
-            // notify({ type: 'error', message: error.response?.data.message });
+            })
         },
         cacheTime: 0,
         retry: 2,
