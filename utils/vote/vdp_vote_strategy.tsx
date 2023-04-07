@@ -17,8 +17,6 @@ export class VDPVoteStrategy extends VoteStrategy{
                     source={{
                         uri: participant.vdpVid ?? "https://www.aeroday.tn/aftermovie.mp4"
                     }}
-                    onError={(err) => console.log(err)}
-                    onLoad={(status) => console.log(status)}
                     style={styles.videoStyle}
                     useNativeControls
                     resizeMode={ResizeMode.COVER}

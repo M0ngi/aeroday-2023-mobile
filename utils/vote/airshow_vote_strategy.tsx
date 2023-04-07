@@ -4,6 +4,7 @@ import { ParticipantTeam } from '../../types'
 import { VoteStrategy } from './vote_strategy'
 import Colors from '../../consts/colors';
 import Icon from 'react-native-vector-icons/Entypo';
+import { screenHeight } from '../size_config';
 
 export class AirshowVoteStrategy extends VoteStrategy{
     constructor(){
@@ -48,7 +49,12 @@ const styles = StyleSheet.create({
     },
     descContainer: {
         marginTop: 40,
-        marginLeft: 40,
+        alignSelf: "center",
+        backgroundColor: Colors.lightGray,
+        borderRadius: 25,
+        padding: 20,
+        width: "90%",
+        height: screenHeight(.3)
     },
     descTitle: {
         color: Colors.text,

@@ -26,7 +26,8 @@ export default function VoteSection({ strategy }: IVoteSection){
                     </View>
                 )
             })}
-            <View style={{width: screenWidth(.17), height: "50%"}}></View>
+            {/* Used for left side padding */}
+            <View style={{width: screenWidth(.1), height: "50%"}}></View>
         </ScrollView>
     )
 }
@@ -39,10 +40,10 @@ const styles = StyleSheet.create({
         marginTop: 20,
         alignSelf: "center",
 
-        paddingLeft: screenWidth(.1),
+        paddingLeft: screenWidth(.05),
     },
     teamDisplay: {
-        width: screenWidth(.8), 
+        width: screenWidth(.85), 
         height: "100%",
     },
 })
