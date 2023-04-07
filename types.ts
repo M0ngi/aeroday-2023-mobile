@@ -1,8 +1,10 @@
+export type ChallengeType = 'Airshow' | 'Videographie';
+
 export interface ParticipantTeam {
     _id: string;
     name: string;
     university: string;
-    competition: 'airshow' | 'videographie';
+    competition: ChallengeType;
     members: string[];
     logo?: string;
     vdpVid?: string;
