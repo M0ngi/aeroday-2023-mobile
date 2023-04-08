@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ScheduleSection from "../../components/schedule_section";
+import TopBar from "../../components/top_bar";
 import UnderlinedTitle from "../../components/underlined_title";
 import Colors from "../../consts/colors";
 import GlobalStyles from "../../consts/styles";
@@ -13,9 +14,7 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
   const { data } = useGetSchedule();
   return (
     <SafeAreaView style={GlobalStyles.background}>
-      <View style={styles.titleContainer}>
-        <UnderlinedTitle title="Schedule" />
-      </View>
+      <TopBar title="Schedule" />
       <View style={styles.scheduleContainer}>
         {
           data && data.map((section, idx) => {
@@ -30,10 +29,6 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    marginTop: 25,
-    marginLeft: 25,
-  },
   scheduleContainer: {
     marginTop: 25,
     width: "80%",

@@ -11,6 +11,7 @@ import { screenHeight, screenWidth } from "../../utils/size_config";
 import RightArrowIcon from "../../components/icons/rightarrow_icon";
 import LeftArrowIcon from "../../components/icons/leftarrow_icon";
 import Colors from "../../consts/colors";
+import TopBar from "../../components/top_bar";
 
 const SECTIONS = [
   "Airshow",
@@ -32,9 +33,7 @@ export default function LeaderboardScreen(){
 
   return (
     <SafeAreaView style={GlobalStyles.background}>
-      <View style={styles.titleContainer}>
-        <UnderlinedTitle lineWidth={25} title="Vote" />
-      </View>
+      <TopBar lineWidth={25} title="Vote" />
       <View style={styles.sectionTitleContainer}>
         <LeftArrowIcon onPress={setAirshow} color={currentSection == 0 ? Colors.textGray : null} />
         <Text style={styles.selectedSectionTitle}>
@@ -64,10 +63,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "space-between"
-  },
-  titleContainer: {
-    marginTop: 25,
-    marginLeft: 25,
   },
   scheduleContainer: {
     marginTop: 25,
