@@ -8,6 +8,7 @@ export interface ParticipantTeam {
     members: string[];
     logo?: string;
     vdpVid?: string;
+    votes: number;
 }
 
 export interface AirshowTeam extends ParticipantTeam { }
