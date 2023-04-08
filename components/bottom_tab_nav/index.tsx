@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Colors from "../../consts/colors";
 import HomeIcon from "../icons/home_icon";
-import ProfileIcon from "../icons/profile_icon";
+import LeaderboardIcon from "../icons/leaderboard_icon";
 import SettingIcon from "../icons/setting_icon";
 import VoteIcon from "../icons/vote_icon";
 
@@ -49,7 +49,7 @@ export default function BottomTabNav({ state, descriptors, navigation }){
             title: "Vote"
           },
           "LeaderboardScreen":{
-            icon: <ProfileIcon color={isFocused ? Colors.green : Colors.textGray} />,
+            icon: <LeaderboardIcon color={isFocused ? Colors.green : Colors.textGray} />,
             title: "Leaderboard",
           },
           "SettingScreen":{

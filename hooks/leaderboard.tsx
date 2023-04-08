@@ -29,6 +29,5 @@ export function useGetLeaderboard(challenge: ChallengeType) {
 				}
 			})
 		},
-        cacheTime: 0
 	});
 }
