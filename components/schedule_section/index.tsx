@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     programSection: {
         width: "100%",
         borderLeftWidth: 2,
-        borderLeftColor: "red",
+        borderLeftColor: "#cc75b2",
         marginBottom: 7.5,
         marginTop: 7.5,
         paddingLeft: 15,

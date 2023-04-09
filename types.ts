@@ -17,7 +17,7 @@ export interface VideographieTeam extends ParticipantTeam { }
 
 export interface IUser {
     _id: string;
-    name: string;
+    fullname: string;
     email: string;
     airshowVote: string | null;
     vdpVote: string | null;

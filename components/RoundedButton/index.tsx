@@ -11,6 +11,7 @@ interface IRoundedButton{
         borderRadius?: number;
         fontSize?: number;
         textColor?: string;
+        marginTop?: number;
     };
     text: string;
     onPress: () => void

@@ -6,7 +6,7 @@ import { useLogin } from "../../hooks/auth/login";
 import InputBox from "../InputBox";
 import RoundedButton from "../RoundedButton";
 
-export default function LoginSection(){
+export default function LoginSection({navigation}: any){
     const login = useLogin();
     const googleAuth = useGoogleOAuth();
 
@@ -29,7 +29,7 @@ export default function LoginSection(){
                 <InputBox value={email} onChange={setEmail} placeholder="Email" />
                 <InputBox value={password} onChange={setPassword} placeholder="Password" />
 
-                <Text style={style.resetpass} onPress={null}>Reset Password</Text>
+                <Text style={style.resetpass} onPress={() => navigation.navigate("ResetPassScreen")}>Reset Password</Text>
             </View>
 
             <RoundedButton onPress={loginHandler} style={{width: "60%"}} text="Login" />

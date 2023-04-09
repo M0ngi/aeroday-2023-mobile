@@ -61,7 +61,7 @@ export default function ResetPassScreen({ navigation } : ResetPassScreenProps){
         onPress={passReset.isSuccess ? updatePassword : sendCode}
       />
       
-      <Text onPress={() => navigation.navigate("LoginScreen")}>Back to login!</Text>
+      <Text onPress={() => navigation.navigate("AuthScreen")}>Back to login!</Text>
     </SafeAreaView>
   )
 }

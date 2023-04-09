@@ -6,10 +6,12 @@ import { Response } from './types';
 import { AppContext } from '../context/app_context/app_context';
 import { useContext } from 'react';
 import { AppAct } from '../context/app_context/types';
+import { AuthContext } from '../context/auth_context/auth_context';
 
 export function useGetUserInfo() {
 	const { dispatchApp } = useContext(AppContext);
 	const { axios } = useAxios();
+	const { auth } = useContext(AuthContext);
 
 	return useQuery<IUser, AxiosError<Response>, IUser>({
 		queryKey: ['user', 'data'],
@@ -25,6 +27,6 @@ export function useGetUserInfo() {
 				}
 			})
 		},
-		refetchInterval: 1000*30
+		refetchInterval: auth.user.verified ? 0 : 1000*30
 	});
 }

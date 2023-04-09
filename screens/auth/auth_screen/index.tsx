@@ -28,7 +28,7 @@ export default function AuthScreen({ navigation } : AuthScreenProps){
           <AuthNavButtons onSelectLogin={showLoginSection} onSelectRegister={showRegisterSection} />
         </View>
         <View style={{height: "85%"}}>
-          {selectedIdx == 0 ? <LoginSection /> : <SignupSection />}
+          {selectedIdx == 0 ? <LoginSection navigation={navigation} /> : <SignupSection />}
         </View>
       </View>
     </SafeAreaView>
