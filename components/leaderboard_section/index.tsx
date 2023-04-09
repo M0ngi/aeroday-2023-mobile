@@ -6,6 +6,8 @@ import PercentageCircle from "../percentage_circle";
 import Colors from "../../consts/colors";
 import { screenHeight, screenWidth } from "../../utils/size_config";
 import Icon from 'react-native-vector-icons/Entypo';
+import DroneIcon from "../icons/drone_icon";
+import PlaneIcon from "../icons/plane_icon";
 
 interface ILeaderboardSection{
     challenge: ChallengeType
@@ -18,6 +20,8 @@ const TeamColors = [
     "#8ab67c",
     "#565a7d",
 ]
+
+const CIRCLE_RADIUS = screenWidth(.22)
 
 export default function LeaderboardSection({challenge} : ILeaderboardSection){
     const leaderboard = useGetLeaderboard(challenge);
@@ -47,7 +51,7 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
                             <PercentageCircle
                                 style={{position: "absolute"}}
                                 key={idx} 
-                                radius={screenWidth(.2)} 
+                                radius={CIRCLE_RADIUS} 
                                 percent={(participant.votes/totalVotes) * 100 - 1} 
                                 color={TeamColors[idx]}
                                 rotate={rotationDeg}
@@ -57,6 +61,11 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
                             </PercentageCircle>
                         )
                     })
+                }
+                {
+                    challenge == "Videographie"
+                        ? <DroneIcon width={CIRCLE_RADIUS*1} style={{margin: CIRCLE_RADIUS*(1/2)}} />
+                        : <PlaneIcon width={CIRCLE_RADIUS*1} style={{margin: CIRCLE_RADIUS*(1/2.5)}} />
                 }
             </View>
             <View style={styles.teamsContainer}>
@@ -78,7 +87,7 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
 const styles = StyleSheet.create({
     graphContainer: {
         alignItems: "center",
-        height: screenWidth(.2)*2 // 2*radius
+        height: CIRCLE_RADIUS*2
     },
     teamDisplay: {
         width: screenWidth(.75),
