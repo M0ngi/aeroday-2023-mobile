@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import UnderlinedTitle from "../underlined_title";
 import Icon from 'react-native-vector-icons/Octicons';
+import { useGetUserInfo } from "../../hooks/user_data";
 
 interface ITopBar{
     title: string;
@@ -8,10 +9,16 @@ interface ITopBar{
 }
 
 export default function TopBar({title, lineWidth}: ITopBar){
+    const {data} = useGetUserInfo();
+
     return (
         <View style={styles.titleContainer}>
             <UnderlinedTitle title={title} lineWidth={lineWidth} />
-            <Icon size={24} color="green" name='unverified' />
+            {
+                data?.verified 
+                    ? <Icon size={24} color="green" name='verified' />
+                    : <Icon size={24} color="red" name='unverified' />
+            }
         </View>
     )
 }

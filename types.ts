@@ -21,6 +21,7 @@ export interface IUser {
     email: string;
     airshowVote: string | null;
     vdpVote: string | null;
+    verified: boolean;
 }
 
 export type GAuthToken = string | null;

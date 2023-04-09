@@ -22,7 +22,8 @@ const useAxios = () => {
 		});
 
 		instance.interceptors.request.use((request) => {
-			dispatchApp({type: AppAct.LOAD_ON})
+			if(!request.headers.get("repeat"))
+				dispatchApp({type: AppAct.LOAD_ON})
 
 			return request;
 		})
