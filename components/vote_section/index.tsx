@@ -9,7 +9,6 @@ interface IVoteSection{
 
 export default function VoteSection({ strategy }: IVoteSection){
     const { data } = strategy.fetchParticipantsHook();
-    console.log(data)
     return (
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
             {data && data.map((participant, idx) => {

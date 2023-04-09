@@ -39,6 +39,9 @@ const useAxios = () => {
 				error.config.__isRetryRequest = true
 				return axios(error.config)
 			}
+			if(error.response.status === 401){
+				console.log(error.response)
+			}
 			return Promise.reject(error);
 		});
 
