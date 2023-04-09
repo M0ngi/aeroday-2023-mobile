@@ -2,32 +2,26 @@ import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import VoteSection from "../../components/vote_section";
-import UnderlinedTitle from "../../components/underlined_title";
 import GlobalStyles from "../../consts/styles";
-import { VoteStrategy } from "../../utils/vote/vote_strategy";
-import { AirshowVoteStrategy } from "../../utils/vote/airshow_vote_strategy";
-import { VDPVoteStrategy } from "../../utils/vote/vdp_vote_strategy";
 import { screenHeight, screenWidth } from "../../utils/size_config";
 import RightArrowIcon from "../../components/icons/rightarrow_icon";
 import LeftArrowIcon from "../../components/icons/leftarrow_icon";
 import Colors from "../../consts/colors";
 import TopBar from "../../components/top_bar";
+import { ChallengeType } from "../../types";
 
-const SECTIONS = [
+const SECTIONS: ChallengeType[] = [
   "Airshow",
   "Videographie"
 ]
 
 export default function LeaderboardScreen(){
-  const [currentStrategy, setCurrentStrategy] = useState<VoteStrategy>(new AirshowVoteStrategy());
   const [currentSection, setCurrentSection] = useState(0);
 
   const setAirshow = () => {
-    setCurrentStrategy(new AirshowVoteStrategy());
     setCurrentSection(0);
   }
   const setVDP = () => {
-    setCurrentStrategy(new VDPVoteStrategy());
     setCurrentSection(1);
   }
 
@@ -41,7 +35,7 @@ export default function LeaderboardScreen(){
         </Text>
         <RightArrowIcon onPress={setVDP} color={currentSection == 1 ? Colors.textGray : null} />
       </View>
-      <VoteSection strategy={currentStrategy} />
+      <VoteSection challenge={SECTIONS[currentSection]} />
     </SafeAreaView>
   )
 }

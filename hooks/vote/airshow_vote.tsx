@@ -28,7 +28,8 @@ export function useAirshowVote() {
             dispatchApp({ type: AppAct.INFO, payload: { info: "Your vote has been submitted." } })
         },
         onError: (error) => {
-            let errorMsg = "Unable to vote. Try again.";
+            // @ts-ignore
+            let errorMsg = error.response.data.data;
             // @ts-ignore
             if(error.response.status == 403){
                 errorMsg = "Please verify your email. An activation email has been sent."

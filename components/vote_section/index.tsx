@@ -1,14 +1,40 @@
+import { useContext } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { AppContext } from "../../context/app_context/app_context";
+import { AppAct } from "../../context/app_context/types";
+import { AuthContext } from "../../context/auth_context/auth_context";
+import { useGetAirshowParticipants } from "../../hooks/participants/airshow";
+import { useGetVDPParticipants } from "../../hooks/participants/videographie";
+import { useAirshowVote } from "../../hooks/vote/airshow_vote";
+import { useVDPVote } from "../../hooks/vote/vdp_vote";
+import { ChallengeType, ParticipantTeam } from "../../types";
 import { screenHeight, screenWidth } from "../../utils/size_config";
-import { VoteStrategy } from "../../utils/vote/vote_strategy";
+// import { VoteStrategy } from "../../utils/vote/vote_strategy";
+import AirshowDescription from "../vote_descriptions/airshow_description";
+import VdpDescription from "../vote_descriptions/vdp_description";
 import VoteTeamDisplay from "../vote_team_display";
 
 interface IVoteSection{
-    strategy: VoteStrategy;
+    challenge: ChallengeType;
 }
 
-export default function VoteSection({ strategy }: IVoteSection){
-    const { data } = strategy.fetchParticipantsHook();
+export default function VoteSection({ challenge }: IVoteSection){
+    const hooks = {
+        "Airshow": {
+            "vote": useAirshowVote(),
+            "participants": useGetAirshowParticipants(),
+            "description": (participant: ParticipantTeam) => <AirshowDescription participant={participant} />
+        },
+        "Videographie": {
+            "vote": useVDPVote(),
+            "participants": useGetVDPParticipants(),
+            "description": (participant: ParticipantTeam) => <VdpDescription participant={participant} />
+        }
+    }
+    const { data } = hooks[challenge].participants
+
+    const { dispatchApp } = useContext(AppContext)
+    const { auth } = useContext(AuthContext)
     return (
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
             {data && data.map((participant, idx) => {
@@ -16,12 +42,15 @@ export default function VoteSection({ strategy }: IVoteSection){
                     <View style={styles.teamDisplay} key={idx}>
                         <VoteTeamDisplay 
                             onVote={() => {
-                                strategy.voteForParticipant(participant._id)
+                                if(!auth.user.verified) dispatchApp({type: AppAct.ERROR, payload: {error: "Verify your email in order to vote."}})
+                                else {
+                                    hooks[challenge].vote.mutate(participant._id)
+                                }
                             }} 
                             team={participant} 
                             index={idx}
                         />
-                        {strategy.generateDescription(participant)}
+                        {hooks[challenge].description(participant)}
                     </View>
                 )
             })}
