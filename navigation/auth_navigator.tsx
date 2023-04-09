@@ -9,7 +9,7 @@ export default function AuthNavigator(){
   return (
     <authStack.Navigator initialRouteName="AuthScreen">
       <authStack.Screen name="AuthScreen" component={AuthScreen} options={{headerShown: false}} />
-      <authStack.Screen name="ResetPassScreen" component={ResetPassScreen} />
+      <authStack.Screen name="ResetPassScreen" component={ResetPassScreen} options={{headerShown: false}} />
     </authStack.Navigator>
   )
 }

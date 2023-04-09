@@ -6,16 +6,19 @@ interface IInputBox {
     value: string;
     onChange: (value: string) => void;
     placeholder?: string;
+    editable?: boolean;
+    textColor?: string;
 }
 
-export default function InputBox({value, style = {}, onChange, placeholder}: IInputBox){
+export default function InputBox({value, style = {}, onChange, placeholder, editable, textColor}: IInputBox){
     return (
         <TextInput 
             value={value}
+            editable={editable}
             onChangeText={onChange}
             style={{...styles.textEdit, ...(style as Object)}}
             placeholder={placeholder}
-            placeholderTextColor={Colors.textGray}
+            placeholderTextColor={textColor ?? Colors.textGray}
         />
     )
 }
