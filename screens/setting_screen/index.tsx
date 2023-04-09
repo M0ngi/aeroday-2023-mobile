@@ -20,7 +20,9 @@ export default function SettingScreen(){
   const btnStyle = {
     width: screenWidth(.8), 
     // height: 40, 
-    fontSize: 24,
+    fontSize: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
   }
 
   // Logout, change pass, display name, verified status
