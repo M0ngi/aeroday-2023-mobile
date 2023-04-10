@@ -14,5 +14,8 @@ export const authReducer = (state: IAuthState, action: AuthActions): IAuthState 
         case AuthAct.REFRESH: {
             return { ...state, ...action.payload };
         }
+        case AuthAct.UPDATE: {
+            return { ...state, user: action.payload}
+        }
     }
 }

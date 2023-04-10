@@ -31,7 +31,8 @@ export enum AuthAct {
   LOGIN = "LOGIN",
   LOGOUT = "LOGOUT",
   RESTORE = "RESTORE",
-  REFRESH = "REFRESH"
+  REFRESH = "REFRESH",
+  UPDATE = "UPDATE"
 }
 
 export type UserPayload = {
@@ -41,8 +42,8 @@ export type UserPayload = {
   [AuthAct.REFRESH]: {
     accessToken: string,
     refreshToken: string,
-
   };
+  [AuthAct.UPDATE]: IUser;
 };
 
 export const loggedOutState: IAuthState = {

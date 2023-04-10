@@ -48,7 +48,7 @@ export default function SettingScreen({navigation}: SettingsScreenProps){
         <View style={styles.btnContainer}>
           <RoundedButton 
             text="Edit profile" 
-            onPress={logoutUser} 
+            onPress={() => navigation.navigate("EditInfoScreen")} 
             style={btnStyle}
           />
         </View>
