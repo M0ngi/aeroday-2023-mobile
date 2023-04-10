@@ -5,7 +5,7 @@ import TopBar from "../../components/top_bar";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
 import { AuthContext } from "../../context/auth_context/auth_context";
-import { useEditInfo } from "../../hooks/editinfo";
+import { useEditInfo } from "../../hooks/user/editinfo";
 import InputBox from "./../../components/InputBox";
 import RoundedButton from "./../../components/RoundedButton";
 import Colors from "./../../consts/colors";

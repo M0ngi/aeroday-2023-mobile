@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import TopBar from "../../components/top_bar";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
-import { useChangePass } from "../../hooks/changepass";
+import { useChangePass } from "../../hooks/user/changepass";
 import InputBox from "./../../components/InputBox";
 import RoundedButton from "./../../components/RoundedButton";
 import Colors from "./../../consts/colors";

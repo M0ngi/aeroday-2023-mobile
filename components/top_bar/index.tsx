@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import UnderlinedTitle from "../underlined_title";
 import Icon from 'react-native-vector-icons/Octicons';
-import { useGetUserInfo } from "../../hooks/user_data";
+import { useGetUserInfo } from "../../hooks/user/user_data";
 
 interface ITopBar{
     title: string;

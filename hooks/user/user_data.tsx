@@ -1,12 +1,12 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useQuery } from '@tanstack/react-query';
-import useAxios from './axios';
-import { AirshowTeam, IUser } from '../types';
-import { Response } from './types';
-import { AppContext } from '../context/app_context/app_context';
+import useAxios from '../axios';
+import { AirshowTeam, IUser } from '../../types';
+import { Response } from '../types';
+import { AppContext } from '../../context/app_context/app_context';
 import { useContext } from 'react';
-import { AppAct } from '../context/app_context/types';
-import { AuthContext } from '../context/auth_context/auth_context';
+import { AppAct } from '../../context/app_context/types';
+import { AuthContext } from '../../context/auth_context/auth_context';
 
 export function useGetUserInfo() {
 	const { dispatchApp } = useContext(AppContext);
