@@ -7,14 +7,14 @@ import { Response } from "./types";
 import { IUser } from "./../types";
 import { AppContext } from "./../context/app_context/app_context";
 import { AppAct } from "./../context/app_context/types";
-import { ChangePassChangeRequestDTO } from "../DTO/changepass_dto";
+import { ChangePassRequestDTO } from "../DTO/changepass_dto";
 
 export function useChangePass() {
 	const { axios } = useAxios();
 	const { dispatchApp } = useContext(AppContext);
 
 	return useMutation({
-		mutationFn: async (req: ChangePassChangeRequestDTO) => {
+		mutationFn: async (req: ChangePassRequestDTO) => {
 			return axios
 				.patch('/user/password', req)
 				.then((res: AxiosResponse<Response<IUser>>) => res.data.data)

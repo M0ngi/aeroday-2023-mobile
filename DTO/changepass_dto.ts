@@ -1,4 +1,4 @@
-export type ChangePassChangeRequestDTO = {
+export type ChangePassRequestDTO = {
     password: string;
     currentPass: string;
 }
