@@ -68,7 +68,7 @@ export default function App() {
                 if (context.appState.info) {
                   Alert.alert("Info", context.appState.info, [
                     {
-                      text: "Exit"
+                      text: "Ok"
                     }
                   ], {
                     onDismiss: () => {

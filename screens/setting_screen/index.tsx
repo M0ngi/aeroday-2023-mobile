@@ -8,25 +8,31 @@ import Colors from "../../consts/colors";
 import GlobalStyles from "../../consts/styles";
 import { AuthContext } from "../../context/auth_context/auth_context";
 import { useLogout } from "../../hooks/auth/logout";
+import { useDeleteAccount } from "../../hooks/user/delete";
 import { SettingsScreenProps } from "../../navigation/types";
 import { screenHeight, screenWidth } from "../../utils/size_config";
 
 export default function SettingScreen({navigation}: SettingsScreenProps){
   const logout = useLogout();
+  const delAcc = useDeleteAccount();
   const { auth } = useContext(AuthContext)
 
   const logoutUser = () => {
     logout.mutate();
   }
+
+  const deleteAccount = () => {
+    delAcc.mutate();
+  }
+
   const btnStyle = {
     width: screenWidth(.8), 
-    // height: 40, 
     fontSize: 20,
     paddingTop: 10,
     paddingBottom: 10,
   }
 
-  // Logout, change pass, display name, verified status
+  // Logout, change pass, display name, verified status, delete acc
   return (
     <SafeAreaView style={GlobalStyles.background}>
       <TopBar title="Settings" />
@@ -34,36 +40,45 @@ export default function SettingScreen({navigation}: SettingsScreenProps){
         <UserDisplay width={screenWidth(.8)} height={screenHeight(.2)} />
       </View>
       <View style={styles.buttonContainer}>
-        {
-          !auth.user.verified && (
-            <View style={styles.btnContainer}>
-              <RoundedButton 
-                text="Verify email" 
-                onPress={logoutUser} 
-                style={btnStyle}
-              />
-            </View>
-          )
-        }
-        <View style={styles.btnContainer}>
-          <RoundedButton 
-            text="Edit profile" 
-            onPress={() => navigation.navigate("EditInfoScreen")} 
-            style={btnStyle}
-          />
+        <View>
+          {
+            !auth.user.verified && (
+              <View style={styles.btnContainer}>
+                <RoundedButton 
+                  text="Verify email" 
+                  onPress={logoutUser} 
+                  style={btnStyle}
+                />
+              </View>
+            )
+          }
+          <View style={styles.btnContainer}>
+            <RoundedButton 
+              text="Edit profile" 
+              onPress={() => navigation.navigate("EditInfoScreen")} 
+              style={btnStyle}
+            />
+          </View>
+          <View style={styles.btnContainer}>
+            <RoundedButton 
+              text="Edit password" 
+              onPress={() => navigation.navigate("EditPassScreen")} 
+              style={btnStyle}
+            />
+          </View>
+          <View style={styles.btnContainer}>
+            <RoundedButton 
+              text="Logout" 
+              onPress={logoutUser} 
+              style={btnStyle}
+            />
+          </View>
         </View>
         <View style={styles.btnContainer}>
           <RoundedButton 
-            text="Edit password" 
-            onPress={() => navigation.navigate("EditPassScreen")} 
-            style={btnStyle}
-          />
-        </View>
-        <View style={styles.btnContainer}>
-          <RoundedButton 
-            text="Logout" 
-            onPress={logoutUser} 
-            style={btnStyle}
+            text="Delete account" 
+            onPress={deleteAccount} 
+            style={{...btnStyle, color: "red",}}
           />
         </View>
       </View>
@@ -77,9 +92,12 @@ const styles = StyleSheet.create({
     alignSelf: "center"
   },
   btnContainer: {
-    marginTop: 16
+    marginTop: 16,
   },
   buttonContainer: {
+    display: "flex",
+    justifyContent: "space-between",
+    height: screenHeight(.5),
     marginTop: screenHeight(.05)-16,
     alignSelf: "center",
   }
