@@ -8,6 +8,8 @@ type AuthStackParamList = {
 type MainStackParamList = {
   HomeScreen: undefined;
   ProfileScreen: undefined;
+  SettingsScreen: undefined;
+  EditPassScreen: undefined;
 };
 
 export type AuthScreenProps = NativeStackScreenProps<AuthStackParamList, 'AuthScreen'>;  
@@ -15,3 +17,5 @@ export type ResetPassScreenProps = NativeStackScreenProps<AuthStackParamList, 'R
 
 export type HomeScreenProps = NativeStackScreenProps<MainStackParamList, 'HomeScreen'>;  
 export type ProfileScreenProps = NativeStackScreenProps<MainStackParamList, 'ProfileScreen'>;  
+export type SettingsScreenProps = NativeStackScreenProps<MainStackParamList, 'SettingsScreen'>;  
+export type EditPassScreenProps = NativeStackScreenProps<MainStackParamList, 'EditPassScreen'>;  

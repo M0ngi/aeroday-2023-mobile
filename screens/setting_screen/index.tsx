@@ -8,9 +8,10 @@ import Colors from "../../consts/colors";
 import GlobalStyles from "../../consts/styles";
 import { AuthContext } from "../../context/auth_context/auth_context";
 import { useLogout } from "../../hooks/auth/logout";
+import { SettingsScreenProps } from "../../navigation/types";
 import { screenHeight, screenWidth } from "../../utils/size_config";
 
-export default function SettingScreen(){
+export default function SettingScreen({navigation}: SettingsScreenProps){
   const logout = useLogout();
   const { auth } = useContext(AuthContext)
 
@@ -54,7 +55,7 @@ export default function SettingScreen(){
         <View style={styles.btnContainer}>
           <RoundedButton 
             text="Edit password" 
-            onPress={logoutUser} 
+            onPress={() => navigation.navigate("EditPassScreen")} 
             style={btnStyle}
           />
         </View>

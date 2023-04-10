@@ -5,10 +5,16 @@ import LeaderboardIcon from "../icons/leaderboard_icon";
 import SettingIcon from "../icons/setting_icon";
 import VoteIcon from "../icons/vote_icon";
 
+const BottomNavRouteNames = [
+  "HomeScreen", "VoteScreen", "LeaderboardScreen", "SettingScreen"
+]
+
 export default function BottomTabNav({ state, descriptors, navigation }){
+  const bottomNavRoutes = state.routes.filter((route) => BottomNavRouteNames.includes(route.name))
+  console.log(bottomNavRoutes)
   return (
     <View style={style.tab}>
-      {state.routes.map((route, index) => {
+      {bottomNavRoutes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
         options.tabBarLabel !== undefined
