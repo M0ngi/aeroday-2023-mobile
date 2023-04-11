@@ -32,7 +32,7 @@ export function useDeleteAccount() {
 			dispatchApp({
 				type: AppAct.ERROR, 
 				payload: { 
-					error: "Unable to change password. Try again." 
+					error: "Unable to delete account. Try again." 
 				}
 			})
 		},
