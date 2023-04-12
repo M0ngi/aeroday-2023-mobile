@@ -13,6 +13,7 @@ import { AppConsumer, AppContext, AppProvider } from './context/app_context/app_
 import LoadingScreen from './screens/loading_screen';
 import { AppAct } from './context/app_context/types';
 import { useFonts } from 'expo-font';
+import { ResponsiveCheckView } from "react-native-responsive-checker";
 
 const queryClient = new QueryClient()
 
@@ -46,6 +47,7 @@ export default function App() {
   }
 
   return (
+    // <ResponsiveCheckView>
     <SafeAreaProvider >
       <QueryClientProvider client={queryClient}>
         <AppProvider>
@@ -91,5 +93,6 @@ export default function App() {
         </AppProvider>
       </QueryClientProvider>
     </SafeAreaProvider>
+    // </ResponsiveCheckView>
   );
 }
