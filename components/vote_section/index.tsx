@@ -36,26 +36,28 @@ export default function VoteSection({ challenge }: IVoteSection){
     const { dispatchApp } = useContext(AppContext)
     const { auth } = useContext(AuthContext)
     return (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
-            {data && data.map((participant, idx) => {
-                return (
-                    <View style={styles.teamDisplay} key={idx}>
-                        <VoteTeamDisplay 
-                            onVote={() => {
-                                if(!auth.user.verified) dispatchApp({type: AppAct.ERROR, payload: {error: "Verify your email in order to vote."}})
-                                else {
-                                    hooks[challenge].vote.mutate(participant._id)
-                                }
-                            }} 
-                            team={participant} 
-                            index={idx}
-                        />
-                        {hooks[challenge].description(participant)}
-                    </View>
-                )
-            })}
-            {/* Used for left side padding */}
-            <View style={{width: screenWidth(.1), height: "50%"}}></View>
+        <ScrollView>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
+                {data && data.map((participant, idx) => {
+                    return (
+                        <View style={styles.teamDisplay} key={idx}>
+                            <VoteTeamDisplay 
+                                onVote={() => {
+                                    if(!auth.user.verified) dispatchApp({type: AppAct.ERROR, payload: {error: "Verify your email in order to vote."}})
+                                    else {
+                                        hooks[challenge].vote.mutate(participant._id)
+                                    }
+                                }} 
+                                team={participant} 
+                                index={idx}
+                            />
+                            {hooks[challenge].description(participant)}
+                        </View>
+                    )
+                })}
+                {/* Used for left side padding */}
+                <View style={{width: screenWidth(.1), height: "50%"}}></View>
+            </ScrollView>
         </ScrollView>
     )
 }

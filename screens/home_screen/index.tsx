@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ScheduleSection from "../../components/schedule_section";
 import TopBar from "../../components/top_bar";
@@ -15,15 +15,17 @@ export default function HomeScreen({ navigation } : HomeScreenProps){
   return (
     <SafeAreaView style={GlobalStyles.background}>
       <TopBar title="Schedule" />
-      <View style={styles.scheduleContainer}>
-        {
-          data && data.map((section, idx) => {
-            return (
-              <ScheduleSection {...section} key={idx} />
-            )
-          })
-        }
-      </View>
+      <ScrollView>
+        <View style={styles.scheduleContainer}>
+          {
+            data && data.map((section, idx) => {
+              return (
+                <ScheduleSection {...section} key={idx} />
+              )
+            })
+          }
+        </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }

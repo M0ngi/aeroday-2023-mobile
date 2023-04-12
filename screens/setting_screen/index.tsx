@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundedButton from "../../components/RoundedButton";
 import TopBar from "../../components/top_bar";
@@ -39,6 +39,7 @@ export default function SettingScreen({navigation}: SettingsScreenProps){
       <View style={styles.topUserDisplay}>
         <UserDisplay width={screenWidth(.8)} height={screenHeight(.2)} />
       </View>
+      <ScrollView>
       <View style={styles.buttonContainer}>
         <View>
           {
@@ -66,15 +67,15 @@ export default function SettingScreen({navigation}: SettingsScreenProps){
               style={btnStyle}
             />
           </View>
-          <View style={styles.btnContainer}>
+        </View>
+        <View style={{...styles.btnContainer, marginTop: screenHeight(.05)}}>
             <RoundedButton 
               text="Logout" 
               onPress={logoutUser} 
               style={btnStyle}
             />
           </View>
-        </View>
-        <View style={styles.btnContainer}>
+        <View style={{...styles.btnContainer, marginTop: screenHeight(.05), marginBottom: screenHeight(.05)}}>
           <RoundedButton 
             text="Delete account" 
             onPress={deleteAccount} 
@@ -82,6 +83,7 @@ export default function SettingScreen({navigation}: SettingsScreenProps){
           />
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -96,8 +98,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     display: "flex",
-    justifyContent: "space-between",
-    height: screenHeight(.5),
     marginTop: screenHeight(.05)-16,
     alignSelf: "center",
   }

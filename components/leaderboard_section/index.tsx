@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { ChallengeType } from "../../types";
 import { useGetLeaderboard } from "../../hooks/leaderboard";
 import PercentageCircle from "../percentage_circle";
@@ -38,7 +38,7 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
         }
     }, leaderboard.data)
     return (
-        <View>
+        <ScrollView>
             <View style={styles.graphContainer}>
                 {
                     leaderboard.data && leaderboard.data.map((participant, idx) => {
@@ -80,7 +80,7 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
                     })
                 }
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
         fontFamily: "Open Sans"
     },
     teamsContainer:{
-        marginTop: screenHeight(.05)
+        marginTop: screenHeight(.05),
+        marginBottom: screenHeight(.05)
     }
 })

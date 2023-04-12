@@ -32,7 +32,7 @@ export default function SignupScreen() {
             <InputBox value={password} onChange={setPassword} placeholder="Password" />
         </View>
 
-        <RoundedButton onPress={signupHandler} style={{width: "60%"}} text="Signup" />
+        <RoundedButton onPress={signupHandler} style={{width: "60%", fontSize: 24}} text="Signup" />
         <TouchableOpacity onPress={googleLoginHandler}>
             <Image source={require("./../../assets/Images/Google.png")} />
         </TouchableOpacity>

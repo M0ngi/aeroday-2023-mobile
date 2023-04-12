@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Button, Image, Linking, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Colors from "../../consts/colors";
+import { PRIVACY_POLICY } from "../../consts/consts";
 import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
 import { useLogin } from "../../hooks/auth/login";
 import InputBox from "../InputBox";
@@ -32,7 +33,9 @@ export default function LoginSection({navigation}: any){
                 <Text style={style.resetpass} onPress={() => navigation.navigate("ResetPassScreen")}>Reset Password</Text>
             </View>
 
-            <RoundedButton onPress={loginHandler} style={{width: "60%"}} text="Login" />
+            <RoundedButton onPress={loginHandler} style={{width: "60%", fontSize: 24}} text="Login" />
+
+            <Text style={style.privPolicy} onPress={() => Linking.openURL(PRIVACY_POLICY)}>View our Privacy Policy</Text>
 
             <TouchableOpacity onPress={googleLoginHandler}>
                 <Image source={require("./../../assets/Images/Google.png")} />
@@ -48,7 +51,14 @@ const style = StyleSheet.create({
         fontSize: 14,
         height: 20,
         textAlignVertical: "center",
-        marginTop: 10
+        marginTop: 10,
+        fontFamily: "Open Sans"
+    },
+    privPolicy:{
+        color: Colors.textGray,
+        fontSize: 14,
+        height: 20,
+        textAlignVertical: "center",
     },
     txtEditContainer: {
         width: "80%",
