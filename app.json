@@ -6,7 +6,7 @@
     "scheme": "aero",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Images/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/Images/splash.png",
@@ -30,11 +30,11 @@
       "package": "com.aeroday.vote2023"
     },
     "web": {
-      "favicon": "./assets/Images/favicon.png"
+      "favicon": "./assets/logo.png"
     },
     "extra": {
       "eas": {
-        "projectId": "eec98369-6062-47c3-94d7-526f6aeea729"
+        "projectId": "e1e4bc88-328d-4762-9993-f5ba3117058c"
       }
     }
   }
