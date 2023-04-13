@@ -8,11 +8,13 @@ interface IInputBox {
     placeholder?: string;
     editable?: boolean;
     textColor?: string;
+    secureTextEntry?: boolean;
 }
 
-export default function InputBox({value, style = {}, onChange, placeholder, editable, textColor}: IInputBox){
+export default function InputBox({secureTextEntry, value, style = {}, onChange, placeholder, editable, textColor}: IInputBox){
     return (
-        <TextInput 
+        <TextInput
+            secureTextEntry={secureTextEntry}
             value={value}
             editable={editable}
             onChangeText={onChange}

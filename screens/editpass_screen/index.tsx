@@ -45,16 +45,19 @@ export default function EditPassScreen({ navigation } : ResetPassScreenProps){
             value={currentPass}
             onChange={setCurrentPass}
             placeholder="Current password"
+            secureTextEntry={true}
           />
           <InputBox
             value={newPassword}
             onChange={setNewPass}
             placeholder="New password"
+            secureTextEntry={true}
           />
           <InputBox
             value={confirmPass}
             onChange={setConfirmPass}
             placeholder="Confirm New password"
+            secureTextEntry={true}
           />
         </View>
 

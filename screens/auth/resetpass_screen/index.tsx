@@ -54,6 +54,7 @@ export default function ResetPassScreen({ navigation } : ResetPassScreenProps){
           />
           <InputBox
             value={newPassword}
+            secureTextEntry={true}
             onChange={setNewPass}
             editable={passReset.isSuccess}
             placeholder="New password"

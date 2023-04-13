@@ -28,7 +28,7 @@ export default function LoginSection({navigation}: any){
         <View style={style.container}>
             <View style={style.txtEditContainer}>
                 <InputBox value={email} onChange={setEmail} placeholder="Email" />
-                <InputBox value={password} onChange={setPassword} placeholder="Password" />
+                <InputBox secureTextEntry={true} value={password} onChange={setPassword} placeholder="Password" />
 
                 <Text style={style.resetpass} onPress={() => navigation.navigate("ResetPassScreen")}>Reset Password</Text>
             </View>

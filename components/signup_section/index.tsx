@@ -29,7 +29,7 @@ export default function SignupScreen() {
         <View style={style.txtEditContainer}>
             <InputBox value={fullname} onChange={setFullName} placeholder="Name" />
             <InputBox value={email} onChange={setEmail} placeholder="Email" />
-            <InputBox value={password} onChange={setPassword} placeholder="Password" />
+            <InputBox secureTextEntry={true} value={password} onChange={setPassword} placeholder="Password" />
         </View>
 
         <RoundedButton onPress={signupHandler} style={{width: "60%", fontSize: 24}} text="Signup" />
