@@ -7,11 +7,12 @@ import { AppContext } from '../../context/app_context/app_context';
 import { useContext } from 'react';
 import { AppAct } from '../../context/app_context/types';
 import { AuthContext } from '../../context/auth_context/auth_context';
+import { AuthAct } from '../../context/auth_context/types';
 
 export function useGetUserInfo() {
 	const { dispatchApp } = useContext(AppContext);
 	const { axios } = useAxios();
-	const { auth } = useContext(AuthContext);
+	const { auth, dispatchAuth } = useContext(AuthContext);
 
 	return useQuery<IUser, AxiosError<Response>, IUser>({
 		queryKey: ['user', 'data'],
@@ -19,6 +20,9 @@ export function useGetUserInfo() {
 			axios
 				.get('/user', {headers: {"repeat": true}})
 				.then((res: AxiosResponse<Response<IUser>>) => res.data.data),
+		onSuccess: (user) => {
+			dispatchAuth({type: AuthAct.UPDATE, payload: user})
+		},
         onError: (error)=>{
 			dispatchApp({
 				type: AppAct.ERROR, 
