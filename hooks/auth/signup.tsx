@@ -48,5 +48,6 @@ export function useSignUp() {
             // notify({ type: 'error', message: error.response?.data.message });
         },
         cacheTime: 0,
+		retry: 0,
     });
 }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
 import { AuthContext } from "../../context/auth_context/auth_context";
@@ -44,14 +44,14 @@ export default function VoteSection({ challenge }: IVoteSection){
                             <VoteTeamDisplay 
                                 onVote={() => {
                                     if(auth.user.airshowVote == participant._id){
-                                        Alert.alert("Error", "Vote is already submitted.")
+                                        dispatchApp({type: AppAct.ERROR, payload: {error: "Vote is already submitted."}})
                                         return;
                                     }
                                     if(!auth.user.verified){
                                         dispatchApp({type: AppAct.ERROR, payload: {error: "Verify your email in order to vote."}})
                                         return;
                                     }
-                                    
+
                                     hooks[challenge].vote.mutate(participant._id)
                                 }} 
                                 team={participant} 

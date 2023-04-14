@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button, Image, Linking, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import Colors from "../../consts/colors";
 import { PRIVACY_POLICY } from "../../consts/consts";
@@ -6,6 +6,8 @@ import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
 import { useLogin } from "../../hooks/auth/login";
 import InputBox from "../InputBox";
 import RoundedButton from "../RoundedButton";
+import { AppAct } from "../../context/app_context/types";
+import { AppContext } from "../../context/app_context/app_context";
 
 export default function LoginSection({navigation}: any){
     const login = useLogin();
@@ -14,7 +16,17 @@ export default function LoginSection({navigation}: any){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { dispatchApp } = useContext(AppContext)
+
     const loginHandler = () => {
+        if(password.length < 6){
+            dispatchApp({type: AppAct.ERROR, payload: {error: "Invalid password."}})
+            return;
+        }
+        if(!email.includes("@")){
+            dispatchApp({type: AppAct.ERROR, payload: {error: "Invalid email."}})
+            return;
+        }
         login.mutate({
             email,
             password,

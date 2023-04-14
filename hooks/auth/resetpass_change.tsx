@@ -34,6 +34,6 @@ export function useResetPasswordChange() {
 			})
 		},
 		cacheTime: 0,
-		retry: 2,
+		retry: 0,
 	});
 }

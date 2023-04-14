@@ -18,13 +18,8 @@ export function useLogout() {
 					(res) => res.data.data,
 				);
 		},
-		onSuccess: async () => {
-			dispatchAuth({type: AuthAct.LOGOUT})
-		},
-		onError: async (error) => {
-			// notify({ type: 'error', message: error.response?.data.message });
-		},
 		onSettled: async (data, error, variables, context) => {
+			dispatchAuth({type: AuthAct.LOGOUT})
 			await secureDelete("authState");
 		},
 		cacheTime: 0,

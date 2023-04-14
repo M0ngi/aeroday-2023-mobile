@@ -1,7 +1,7 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../axios';
-import { AirshowTeam, IUser } from '../../types';
+import { IUser } from '../../types';
 import { Response } from '../types';
 import { AppContext } from '../../context/app_context/app_context';
 import { useContext } from 'react';

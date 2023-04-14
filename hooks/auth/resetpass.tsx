@@ -38,6 +38,6 @@ export function useResetPassword() {
 			})
 		},
 		cacheTime: 0,
-		retry: 2,
+		retry: 0,
 	});
 }

@@ -1,11 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../context/auth_context/auth_context";
-import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { Response } from "../types";
-import { LoginRequestDTO, LoginResponseDTO } from "../../DTO/login_dto";
-import { IUser } from "../../types";
+import { LoginResponseDTO } from "../../DTO/login_dto";
 import getHeaders from "../../utils/api_utils";
 import { AuthAct } from "../../context/auth_context/types";
 import { secureDelete, secureSave } from "../../utils/secure_storage";
@@ -13,7 +11,6 @@ import axios from "axios";
 import { PUBLIC_API_URL } from "../../consts/api";
 
 export function useRefreshToken() {
-    // const { axios } = useAxios();
     const { auth, dispatchAuth } = useContext(AuthContext);
 
     return useMutation({
@@ -42,7 +39,6 @@ export function useRefreshToken() {
         onError: async (error) => {
 			await secureDelete("authState");
             dispatchAuth({type: AuthAct.LOGOUT})
-            // notify({ type: 'error', message: error.response?.data.message });
         },
         cacheTime: 0,
     });

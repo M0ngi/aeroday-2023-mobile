@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth_context/auth_context";
 import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import { Response } from "../types";
 import { GLoginRequestDTO, LoginResponseDTO } from "../../DTO/login_dto";
 import { IUser } from "../../types";

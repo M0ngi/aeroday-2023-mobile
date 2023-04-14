@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth_context/auth_context";
 import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError, AxiosResponse } from 'axios';
+import { AxiosResponse, AxiosError } from 'axios';
 import { Response } from "../types";
 import { LoginRequestDTO, LoginResponseDTO } from "../../DTO/login_dto";
 import { IUser } from "../../types";
@@ -41,17 +41,16 @@ export function useLogin() {
             await secureSave("authState", authState);
 			dispatchAuth({type: AuthAct.LOGIN, payload: authState})
 		},
-		onError: (error) => {
+		onError: (error: AxiosError<Response<string>>) => {
 			dispatchApp({
 				type: AppAct.ERROR, 
-				payload: { 
-					error: "Unable to login. Try again." 
+				payload: {
+					error: error.response.data.data
 				}
 			})
 			logout.mutate();
-			// notify({ type: 'error', message: error.response?.data.message });
 		},
 		cacheTime: 0,
-		retry: 2,
+		retry: 0,
 	});
 }

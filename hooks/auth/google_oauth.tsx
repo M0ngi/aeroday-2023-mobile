@@ -13,7 +13,6 @@ export type AuthStatus = "cancel" | "dismiss" | "opened" | "locked" | "error" | 
 export function useGoogleOAuth() {
   const [request, response, promptAsync] = Google.useAuthRequest(googleAuthConf);
 
-  const [token, setToken] = useState<GAuthToken>(null);
   const [status, setStatus] = useState<AuthStatus>("idle");
   const [error, setError] = useState<AuthError>(null);
 

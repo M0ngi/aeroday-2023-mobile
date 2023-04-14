@@ -20,8 +20,8 @@ export function useGetLeaderboard(challenge: ChallengeType) {
                 return res.data.data
             })
         },
-        onError: (error)=>{
-            console.log(error?.response.data)
+        onError: (error: AxiosError<Response<string>>)=>{
+            console.log(error.response.data)
 			dispatchApp({
 				type: AppAct.ERROR, 
 				payload: { 
