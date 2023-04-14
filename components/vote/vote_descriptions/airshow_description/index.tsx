@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
-import { ParticipantTeam } from "../../../types";
+import { ParticipantTeam } from "../../../../types";
 import Icon from 'react-native-vector-icons/Entypo';
-import Colors from "../../../consts/colors";
-import { screenHeight } from "../../../utils/size_config";
+import Colors from "../../../../consts/colors";
+import { screenHeight } from "../../../../utils/size_config";
 
 interface IAirshowDescription{
     participant: ParticipantTeam;

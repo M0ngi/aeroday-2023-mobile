@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import VoteSection from "../../components/vote_section";
+import VoteSection from "../../components/vote/vote_section";
 import GlobalStyles from "../../consts/styles";
 import { screenHeight, screenWidth } from "../../utils/size_config";
 import RightArrowIcon from "../../components/icons/rightarrow_icon";

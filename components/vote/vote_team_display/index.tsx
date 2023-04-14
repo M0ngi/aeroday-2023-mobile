@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import Colors from "../../consts/colors";
-import { ParticipantTeam } from "../../types"
-import RoundedButton from "../RoundedButton";
-import { LOGO_PLACEHOLDER } from "../../consts/consts";
-import { AuthContext } from "../../context/auth_context/auth_context";
+import Colors from "../../../consts/colors";
+import { ParticipantTeam } from "../../../types"
+import RoundedButton from "../../RoundedButton";
+import { LOGO_PLACEHOLDER } from "../../../consts/consts";
+import { AuthContext } from "../../../context/auth_context/auth_context";
 
 interface IVoteTeamDisplay{
     team: ParticipantTeam;

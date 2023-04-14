@@ -1,6 +1,6 @@
 import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, View } from "react-native";
-import { ParticipantTeam } from "../../../types";
+import { ParticipantTeam } from "../../../../types";
 
 interface IVdpDescription{
     participant: ParticipantTeam;

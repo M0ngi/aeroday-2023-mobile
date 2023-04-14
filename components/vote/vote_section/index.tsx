@@ -1,18 +1,17 @@
 import { useContext } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { AppContext } from "../../context/app_context/app_context";
-import { AppAct } from "../../context/app_context/types";
-import { AuthContext } from "../../context/auth_context/auth_context";
-import { useGetAirshowParticipants } from "../../hooks/participants/airshow";
-import { useGetVDPParticipants } from "../../hooks/participants/videographie";
-import { useAirshowVote } from "../../hooks/vote/airshow_vote";
-import { useVDPVote } from "../../hooks/vote/vdp_vote";
-import { ChallengeType, ParticipantTeam } from "../../types";
-import { screenHeight, screenWidth } from "../../utils/size_config";
-// import { VoteStrategy } from "../../utils/vote/vote_strategy";
-import AirshowDescription from "../vote_descriptions/airshow_description";
-import VdpDescription from "../vote_descriptions/vdp_description";
-import VoteTeamDisplay from "../vote_team_display";
+import { AppContext } from "../../../context/app_context/app_context";
+import { AppAct } from "../../../context/app_context/types";
+import { AuthContext } from "../../../context/auth_context/auth_context";
+import { useGetAirshowParticipants } from "../../../hooks/participants/airshow";
+import { useGetVDPParticipants } from "../../../hooks/participants/videographie";
+import { useAirshowVote } from "../../../hooks/vote/airshow_vote";
+import { useVDPVote } from "../../../hooks/vote/vdp_vote";
+import { ChallengeType, ParticipantTeam } from "../../../types";
+import { screenHeight, screenWidth } from "../../../utils/size_config";
+import AirshowDescription from "../../vote/vote_descriptions/airshow_description";
+import VdpDescription from "../../vote/vote_descriptions/vdp_description";
+import VoteTeamDisplay from "./../vote_team_display";
 
 interface IVoteSection{
     challenge: ChallengeType;
