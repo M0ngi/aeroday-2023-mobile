@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
-import { useSignUp } from "../../hooks/auth/signup";
-import InputBox from "../InputBox";
-import RoundedButton from "../RoundedButton";
+import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
+import { useSignUp } from "../../../hooks/auth/signup";
+import InputBox from "../../InputBox";
+import RoundedButton from "../../RoundedButton";
 
 export default function SignupScreen() {
   const [email, setEmail] = useState("");
@@ -34,7 +34,7 @@ export default function SignupScreen() {
 
         <RoundedButton onPress={signupHandler} style={{width: "60%", fontSize: 24}} text="Signup" />
         <TouchableOpacity onPress={googleLoginHandler}>
-            <Image source={require("./../../assets/Images/Google.png")} />
+            <Image source={require("./../../../assets/Images/Google.png")} />
         </TouchableOpacity>
     
     </View>

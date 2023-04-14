@@ -1,13 +1,13 @@
 import { useState, useContext } from "react";
 import { Button, Image, Linking, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import Colors from "../../consts/colors";
-import { PRIVACY_POLICY } from "../../consts/consts";
-import { useGoogleOAuth } from "../../hooks/auth/google_oauth";
-import { useLogin } from "../../hooks/auth/login";
-import InputBox from "../InputBox";
-import RoundedButton from "../RoundedButton";
-import { AppAct } from "../../context/app_context/types";
-import { AppContext } from "../../context/app_context/app_context";
+import Colors from "../../../consts/colors";
+import { PRIVACY_POLICY } from "../../../consts/consts";
+import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
+import { useLogin } from "../../../hooks/auth/login";
+import InputBox from "../../InputBox";
+import RoundedButton from "../../RoundedButton";
+import { AppAct } from "../../../context/app_context/types";
+import { AppContext } from "../../../context/app_context/app_context";
 
 export default function LoginSection({navigation}: any){
     const login = useLogin();
@@ -50,7 +50,7 @@ export default function LoginSection({navigation}: any){
             <Text style={style.privPolicy} onPress={() => Linking.openURL(PRIVACY_POLICY)}>View our Privacy Policy</Text>
 
             <TouchableOpacity onPress={googleLoginHandler}>
-                <Image source={require("./../../assets/Images/Google.png")} />
+                <Image source={require("./../../../assets/Images/Google.png")} />
             </TouchableOpacity>
         
         </View>
