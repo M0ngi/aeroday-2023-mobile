@@ -21,7 +21,6 @@ export function useGetLeaderboard(challenge: ChallengeType) {
             })
         },
         onError: (error: AxiosError<Response<string>>)=>{
-            console.log(error.response.data)
 			dispatchApp({
 				type: AppAct.ERROR, 
 				payload: { 
