@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import Colors from "../../consts/colors";
 import { ParticipantTeam } from "../../types"
 import RoundedButton from "../RoundedButton";
 import { LOGO_PLACEHOLDER } from "../../consts/consts";
+import { AuthContext } from "../../context/auth_context/auth_context";
 
 interface IVoteTeamDisplay{
     team: ParticipantTeam;
@@ -17,14 +19,15 @@ const BoxColors = [
 ]
 
 export default function VoteTeamDisplay({team, onVote, index}: IVoteTeamDisplay){
+    const { auth } = useContext(AuthContext)
     const btnStyle = {
         width: "30%", 
         fontSize: 18, 
         height: 30,
         paddingTop: 5,
-        color: "#fff",
+        color: auth.user.airshowVote == team._id ? Colors.green : "#fff",
         textColor: "#000"
-    }
+    }    
     return (
         <View style={{...styles.teamContainer, backgroundColor: BoxColors[index % BoxColors.length]}}>
             <View style={styles.topRowContainer}>
@@ -36,7 +39,7 @@ export default function VoteTeamDisplay({team, onVote, index}: IVoteTeamDisplay)
                         {team.university}
                     </Text>
                 </View>
-                <RoundedButton onPress={onVote} text="Vote" style={btnStyle} />
+                <RoundedButton onPress={onVote} text={auth.user.airshowVote == team._id ? "Voted" : "Vote"} style={btnStyle} />
             </View>
             <Image style={{width: "60%", height: "80%", marginLeft: "20%"}} source={{uri: team.logo ?? LOGO_PLACEHOLDER}} />
         </View>

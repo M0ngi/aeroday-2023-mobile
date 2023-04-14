@@ -11,7 +11,6 @@ const BottomNavRouteNames = [
 
 export default function BottomTabNav({ state, descriptors, navigation }){
   const bottomNavRoutes = state.routes.filter((route) => BottomNavRouteNames.includes(route.name))
-  console.log(bottomNavRoutes)
   return (
     <View style={style.tab}>
       {bottomNavRoutes.map((route, index) => {

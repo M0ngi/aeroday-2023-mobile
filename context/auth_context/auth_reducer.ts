@@ -17,5 +17,11 @@ export const authReducer = (state: IAuthState, action: AuthActions): IAuthState 
         case AuthAct.UPDATE: {
             return { ...state, user: action.payload}
         }
+        case AuthAct.VOTE_AIRSHOW: {
+            return { ...state, user: { ...state.user, airshowVote: action.payload }}
+        }
+        case AuthAct.VOTE_VDP: {
+            return { ...state, user: { ...state.user, vdpVote: action.payload }}
+        }
     }
 }

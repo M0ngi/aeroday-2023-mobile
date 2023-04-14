@@ -6,10 +6,12 @@ import { AxiosResponse } from 'axios';
 import { Response } from "../types";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
+import { AuthAct } from "../../context/auth_context/types";
 
 export function useVDPVote() {
     const { axios } = useAxios();
     const { dispatchApp } = useContext(AppContext);
+    const { dispatchAuth } = useContext(AuthContext);
     // const logout = useLogout();
 
     return useMutation({
@@ -20,11 +22,12 @@ export function useVDPVote() {
                 .post(path)
                 .then(
                     (res: AxiosResponse<Response<null>>) => {
-                        return res.data.data
+                        return { teamId }
                     },)
             return result
         },
-        onSuccess: () => {
+        onSuccess: ({teamId}) => {
+            dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId})
             dispatchApp({ type: AppAct.INFO, payload: { info: "Your vote has been submitted." } })
         },
         onError: (error) => {

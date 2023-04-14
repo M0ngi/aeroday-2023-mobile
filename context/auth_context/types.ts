@@ -32,7 +32,9 @@ export enum AuthAct {
   LOGOUT = "LOGOUT",
   RESTORE = "RESTORE",
   REFRESH = "REFRESH",
-  UPDATE = "UPDATE"
+  UPDATE = "UPDATE",
+  VOTE_VDP = "VOTE_VDP",
+  VOTE_AIRSHOW = "VOTE_AIRSHOW",
 }
 
 export type UserPayload = {
@@ -44,6 +46,8 @@ export type UserPayload = {
     refreshToken: string,
   };
   [AuthAct.UPDATE]: IUser;
+  [AuthAct.VOTE_AIRSHOW]: string;
+  [AuthAct.VOTE_VDP]: string;
 };
 
 export const loggedOutState: IAuthState = {
