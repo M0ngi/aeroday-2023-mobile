@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth_context/auth_context";
 import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios';
-import { Response, ResponseError } from "../types";
+import { IVote, Response, ResponseError } from "../types";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
 import { AuthAct } from "../../context/auth_context/types";
@@ -15,10 +15,10 @@ export function useVDPVote() {
 
     return useMutation({
         mutationKey: ['user', 'airshow', 'vdp'],
-        mutationFn: (teamId: string) => {
-            const path = '/vote/videographie/' + teamId
+        mutationFn: ({teamId, location}: IVote) => {
+            console.log(location)
             const result = axios
-                .post(path)
+                .post(`/vote/videographie/${teamId}`)
                 .then(
                     (res: AxiosResponse<Response<null>>) => {
                         return { teamId }

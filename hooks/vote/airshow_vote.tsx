@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth_context/auth_context";
 import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios';
-import { Response, ResponseError } from "../types";
+import { IVote, Response, ResponseError } from "../types";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
 import { AuthAct } from "../../context/auth_context/types";
@@ -15,7 +15,7 @@ export function useAirshowVote() {
 
     return useMutation({
         mutationKey: ['user', 'airshow', 'vote'],
-        mutationFn: (teamId: string) => {
+        mutationFn: ({teamId, location}: IVote) => {
             const path = '/vote/aishow/' + teamId
             const result = axios
                 .post(path)

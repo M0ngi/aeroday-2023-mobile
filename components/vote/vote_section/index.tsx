@@ -1,6 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { AppContext } from "../../../context/app_context/app_context";
 import { AppAct } from "../../../context/app_context/types";
@@ -14,6 +14,8 @@ import { screenHeight, screenWidth } from "../../../utils/size_config";
 import AirshowDescription from "../../vote/vote_descriptions/airshow_description";
 import VdpDescription from "../../vote/vote_descriptions/vdp_description";
 import VoteTeamDisplay from "./../vote_team_display";
+
+import * as Location from 'expo-location';
 
 interface IVoteSection{
     challenge: ChallengeType;
@@ -44,6 +46,17 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
 
     const { dispatchApp } = useContext(AppContext)
     const { auth } = useContext(AuthContext)
+
+    useEffect(() => {
+        (async () => {
+          let { status } = await Location.requestForegroundPermissionsAsync();
+          if (status !== 'granted') {
+            dispatchApp({type: AppAct.ERROR, payload: 'Permission to access location was denied.'})
+            return;
+          }
+        })();
+    }, []);
+
     return (
         <ScrollView>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
@@ -51,7 +64,7 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
                     return (
                         <View style={styles.teamDisplay} key={idx}>
                             <VoteTeamDisplay 
-                                onVote={() => {
+                                onVote={async () => {
                                     if(auth.user.airshowVote == participant._id){
                                         dispatchApp({type: AppAct.ERROR, payload: "Vote is already submitted."})
                                         return;
@@ -61,7 +74,12 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
                                         return;
                                     }
 
-                                    hooks[challenge].vote.mutate(participant._id)
+                                    let location = await Location.getCurrentPositionAsync({});
+
+                                    hooks[challenge].vote.mutate({
+                                        teamId: participant._id,
+                                        location
+                                    })
                                 }} 
                                 team={participant} 
                                 index={idx}
