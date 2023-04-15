@@ -38,7 +38,7 @@ export default function LeaderboardScreen({navigation} : LeaderboardScreenProps)
         </Text>
         <RightArrowIcon onPress={setVDP} color={currentSection == 1 ? Colors.textGray : null} />
       </View>
-      <LeaderboardSection challenge={SECTIONS[currentSection]} />
+      <LeaderboardSection navigation={navigation} challenge={SECTIONS[currentSection]} />
     </SafeAreaView>
   )
 }

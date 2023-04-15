@@ -1,5 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { useContext } from "react";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useContext, useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { AppContext } from "../../../context/app_context/app_context";
 import { AppAct } from "../../../context/app_context/types";
@@ -16,9 +17,10 @@ import VoteTeamDisplay from "./../vote_team_display";
 
 interface IVoteSection{
     challenge: ChallengeType;
+    navigation: NativeStackNavigationProp<any>;
 }
 
-export default function VoteSection({ challenge }: IVoteSection){
+export default function VoteSection({ challenge, navigation }: IVoteSection){
     const hooks = {
         "Airshow": {
             "vote": useAirshowVote(),
@@ -33,9 +35,12 @@ export default function VoteSection({ challenge }: IVoteSection){
     }
     const { data } = hooks[challenge].participants
 
-    useFocusEffect(() => {
-        hooks[challenge].participants.refetch();
-    })
+    useEffect(()=>{
+        const unsubListener = navigation.addListener("focus", () => {
+            hooks[challenge].participants.refetch();
+        })
+        return () => { unsubListener() }
+    }, [])
 
     const { dispatchApp } = useContext(AppContext)
     const { auth } = useContext(AuthContext)

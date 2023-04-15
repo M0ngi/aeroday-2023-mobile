@@ -9,13 +9,14 @@ import LeftArrowIcon from "../../components/icons/leftarrow_icon";
 import Colors from "../../consts/colors";
 import TopBar from "../../components/top_bar";
 import { ChallengeType } from "../../types";
+import { LeaderboardScreenProps } from "../../navigation/types";
 
 const SECTIONS: ChallengeType[] = [
   "Airshow",
   "Videographie"
 ]
 
-export default function LeaderboardScreen(){
+export default function LeaderboardScreen({navigation}: LeaderboardScreenProps){
   const [currentSection, setCurrentSection] = useState(0);
 
   const setAirshow = () => {
@@ -35,7 +36,7 @@ export default function LeaderboardScreen(){
         </Text>
         <RightArrowIcon onPress={setVDP} color={currentSection == 1 ? Colors.textGray : null} />
       </View>
-      <VoteSection challenge={SECTIONS[currentSection]} />
+      <VoteSection navigation={navigation} challenge={SECTIONS[currentSection]} />
     </SafeAreaView>
   )
 }

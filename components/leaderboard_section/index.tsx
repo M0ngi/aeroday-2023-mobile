@@ -9,10 +9,10 @@ import Icon from 'react-native-vector-icons/Entypo';
 import DroneIcon from "../icons/drone_icon";
 import PlaneIcon from "../icons/plane_icon";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { useFocusEffect } from "@react-navigation/native";
 
 interface ILeaderboardSection{
     challenge: ChallengeType;
+    navigation: NativeStackNavigationProp<any>;
 }
 
 const TeamColors = [
@@ -25,24 +25,27 @@ const TeamColors = [
 
 const CIRCLE_RADIUS = screenWidth(.22)
 
-export default function LeaderboardSection({challenge} : ILeaderboardSection){
+export default function LeaderboardSection({challenge, navigation} : ILeaderboardSection){
     const leaderboard = useGetLeaderboard(challenge);
     const [totalVotes, setTotalVotes] = useState(0);
 
     useEffect(() => {
         leaderboard.refetch()
     }, [challenge])
-
-    useFocusEffect(()=> {
-        leaderboard.refetch();
-    })
+    
+    useEffect(()=>{
+        const unsubListener = navigation.addListener("focus", () => {
+            leaderboard.refetch();
+        })
+        return () => { unsubListener() }
+    }, [])
 
     useEffect(() => {
         if(leaderboard.data){
             const total = leaderboard.data.reduce((prev, curr) => curr.votes+prev, 0)
             setTotalVotes(total)
         }
-    }, leaderboard.data)
+    }, [leaderboard.data])
     return (
         <ScrollView>
             <View style={styles.graphContainer}>
