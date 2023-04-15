@@ -26,9 +26,7 @@ export function useGetSchedule() {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Error occured while fetching schedule."
-					}
+					payload: "Error occured while fetching schedule."
 				})
 			}
 		},

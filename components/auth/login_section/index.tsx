@@ -20,11 +20,11 @@ export default function LoginSection({navigation}: any){
 
     const loginHandler = () => {
         if(password.length < 6){
-            dispatchApp({type: AppAct.ERROR, payload: {error: "Invalid password."}})
+            dispatchApp({type: AppAct.ERROR, payload: "Invalid password."})
             return;
         }
         if(!email.includes("@")){
-            dispatchApp({type: AppAct.ERROR, payload: {error: "Invalid email."}})
+            dispatchApp({type: AppAct.ERROR, payload: "Invalid email."})
             return;
         }
         login.mutate({

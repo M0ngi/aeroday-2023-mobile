@@ -27,15 +27,13 @@ export function useAirshowVote() {
         },
         onSuccess: ({teamId}) => {
             dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId})
-            dispatchApp({ type: AppAct.INFO, payload: { info: "Your vote has been submitted." } })
+            dispatchApp({ type: AppAct.INFO, payload: "Your vote has been submitted." })
         },
         onError: (error: ResponseError<any>) => {
             if(error.response.data.data){
                 dispatchApp({
                     type: AppAct.ERROR,
-                    payload: {
-                        error: error.response.data.data
-                    }
+                    payload: error.response.data.data
                 })
             }
         },

@@ -36,12 +36,8 @@ export type AppPayload = {
     [AppAct.RESET]: undefined;
     [AppAct.LOAD_ON]: undefined;
     [AppAct.LOAD_OFF]: undefined;
-    [AppAct.ERROR]: {
-        error: string;
-    };
-    [AppAct.INFO]: {
-        info: string;
-    };
+    [AppAct.ERROR]: string;
+    [AppAct.INFO]: string;
 };
 
 export const defaultState : IAppState = {

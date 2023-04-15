@@ -23,7 +23,7 @@ export function useEditInfo() {
 				.then((user) => ({user}));
 		},
 		onSuccess: async ({user}) => {
-            dispatchApp({ type: AppAct.INFO, payload: { info: "Your info has been updated." } })
+            dispatchApp({ type: AppAct.INFO, payload: "Your info has been updated." })
 			dispatchAuth({
 				type: AuthAct.UPDATE,
 				payload: user,
@@ -33,9 +33,7 @@ export function useEditInfo() {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Unable to change information. Try again." 
-					}
+					payload: "Unable to change information. Try again." 
 				})
 			}
 		},

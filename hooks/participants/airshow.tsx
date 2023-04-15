@@ -21,9 +21,7 @@ export function useGetAirshowParticipants() {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Error occured while fetching teams (Airshow)." 
-					}
+					payload: "Error occured while fetching teams (Airshow)." 
 				})
 			}
 		},

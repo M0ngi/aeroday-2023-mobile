@@ -47,9 +47,7 @@ const useAxios = () => {
 				case HTTP_FORBIDDEN: {
 					dispatchApp({
 						type: AppAct.ERROR,
-						payload: {
-							error: error.response.data.data
-						}
+						payload: error.response.data.data
 					})
 					error.response.data.data = null;
 					return Promise.reject(error);
@@ -58,9 +56,7 @@ const useAxios = () => {
 					navigate("HomeScreen")
 					dispatchApp({
 						type: AppAct.ERROR, 
-						payload: { 
-							error: error.response.data.data
-						}
+						payload: error.response.data.data
 					})
 					error.response.data.data = null;
 					return Promise.reject(error);

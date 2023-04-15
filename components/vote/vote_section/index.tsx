@@ -53,11 +53,11 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
                             <VoteTeamDisplay 
                                 onVote={() => {
                                     if(auth.user.airshowVote == participant._id){
-                                        dispatchApp({type: AppAct.ERROR, payload: {error: "Vote is already submitted."}})
+                                        dispatchApp({type: AppAct.ERROR, payload: "Vote is already submitted."})
                                         return;
                                     }
                                     if(!auth.user.verified){
-                                        dispatchApp({type: AppAct.ERROR, payload: {error: "Verify your email in order to vote."}})
+                                        dispatchApp({type: AppAct.ERROR, payload: "Verify your email in order to vote."})
                                         return;
                                     }
 

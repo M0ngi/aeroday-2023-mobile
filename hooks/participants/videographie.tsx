@@ -22,9 +22,7 @@ export function useGetVDPParticipants() {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Error occured while fetching teams (Videographie)." 
-					}
+					payload: "Error occured while fetching teams (Videographie)." 
 				})
 			}
 		},

@@ -22,16 +22,14 @@ export function useDeleteAccount() {
 				.then((user) => ({user}));
 		},
 		onSuccess: async ({user}) => {
-            dispatchApp({ type: AppAct.INFO, payload: { info: "Your account has been deleted." } })
+            dispatchApp({ type: AppAct.INFO, payload: "Your account has been deleted." })
 			dispatchAuth({type: AuthAct.LOGOUT})
 		},
 		onError: (error: ResponseError<any>) => {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Unable to delete account. Try again." 
-					}
+					payload: "Unable to delete account. Try again." 
 				})
 			}
 		},

@@ -27,9 +27,7 @@ export function useGetUserInfo() {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Unable to fetch user info." 
-					}
+					payload: "Unable to fetch user info." 
 				})
 			}
 		},

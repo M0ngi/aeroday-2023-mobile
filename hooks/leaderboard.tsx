@@ -25,9 +25,7 @@ export function useGetLeaderboard(challenge: ChallengeType) {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Error occured while fetching scoreboard." 
-					}
+					payload: "Error occured while fetching scoreboard." 
 				})
 			}
 			return 5

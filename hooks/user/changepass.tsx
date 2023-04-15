@@ -20,15 +20,13 @@ export function useChangePass() {
 				.then((user) => ({user}));
 		},
 		onSuccess: async ({user}) => {
-            dispatchApp({ type: AppAct.INFO, payload: { info: "Your password has been updated." } })
+            dispatchApp({ type: AppAct.INFO, payload: "Your password has been updated." })
 		},
 		onError: (error: ResponseError<any>) => {
 			if(error.response.data.data){
 				dispatchApp({
 					type: AppAct.ERROR, 
-					payload: { 
-						error: "Unable to change password. Try again." 
-					}
+					payload: "Unable to change password. Try again." 
 				})
             }
 		},
