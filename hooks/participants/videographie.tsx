@@ -2,7 +2,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../axios';
 import { VideographieTeam } from '../../types';
-import { Response } from '../types';
+import { Response, ResponseError } from '../types';
 import { useContext } from 'react';
 import { AppContext } from '../../context/app_context/app_context';
 import { AppAct } from '../../context/app_context/types';
@@ -13,17 +13,21 @@ export function useGetVDPParticipants() {
 
 	return useQuery<VideographieTeam[], AxiosError<Response>, VideographieTeam[]>({
 		queryKey: ['teams', 'vdp'],
-		queryFn: () =>
-			axios
+		queryFn: async () => {
+			return axios
 				.get('/team/videographie')
-				.then((res: AxiosResponse<Response<VideographieTeam[]>>) => res.data.data),
-		onError: (error)=>{
-			dispatchApp({
-				type: AppAct.ERROR, 
-				payload: { 
-					error: "Error occured while fetching teams (Airshow)." 
-				}
-			})
-		}
+				.then((res: AxiosResponse<Response<VideographieTeam[]>>) => res.data.data)
+		},
+		onError: (error: ResponseError<any>)=>{
+			if(error.response.data.data){
+				dispatchApp({
+					type: AppAct.ERROR, 
+					payload: { 
+						error: "Error occured while fetching teams (Videographie)." 
+					}
+				})
+			}
+		},
+		retry: 0,
 	});
 }

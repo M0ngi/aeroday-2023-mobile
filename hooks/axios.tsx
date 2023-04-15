@@ -1,12 +1,15 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
 import { useContext, useMemo } from 'react';
 import { PUBLIC_API_URL } from '../consts/api';
+import { HTTP_FORBIDDEN, HTTP_INTERNAL_SERVER_ERROR, HTTP_LOCKED, HTTP_UNAUTHORIZED } from '../consts/http';
 import { AppContext } from '../context/app_context/app_context';
 import { AppAct } from '../context/app_context/types';
 import { AuthContext } from '../context/auth_context/auth_context';
 import { AuthAct } from '../context/auth_context/types';
+import { navigate } from '../navigation/root_navigation';
 import getHeaders from '../utils/api_utils';
 import { useRefreshToken } from './auth/refresh_token';
+import { Response } from './types';
 
 const useAxios = () => {
 	const refreshToken = useRefreshToken()
@@ -31,16 +34,42 @@ const useAxios = () => {
 		instance.interceptors.response.use((response) => {
 			dispatchApp({type: AppAct.LOAD_OFF})
 			return response;
-		}, async (error) => {
+		}, async (error: AxiosError<Response<string>>) => {
 			dispatchApp({type: AppAct.LOAD_OFF})
-			// Unauthorized
-			if (error.response.status === 401){
-				await refreshToken.mutateAsync();
-				error.config.__isRetryRequest = true
-				return axios(error.config)
-			}
-			if(error.response.status === 500){
-				console.log(error.response)
+
+			switch(error.response.status){
+				case HTTP_UNAUTHORIZED: {
+					await refreshToken.mutateAsync();
+					// @ts-ignore
+					error.config.__isRetryRequest = true
+					return axios(error.config)
+				}
+				case HTTP_FORBIDDEN: {
+					dispatchApp({
+						type: AppAct.ERROR,
+						payload: {
+							error: error.response.data.data
+						}
+					})
+					error.response.data.data = null;
+					return Promise.reject(error);
+				}
+				case HTTP_LOCKED: {
+					navigate("HomeScreen")
+					dispatchApp({
+						type: AppAct.ERROR, 
+						payload: { 
+							error: error.response.data.data
+						}
+					})
+					error.response.data.data = null;
+					return Promise.reject(error);
+				}
+				case HTTP_INTERNAL_SERVER_ERROR: {
+					console.log(error.response)
+					error.response.data.data = null;
+					return Promise.reject(error);
+				}
 			}
 			return Promise.reject(error);
 		});

@@ -36,11 +36,3 @@ export interface IScheduleSection {
 }
 
 export type Schedule = IScheduleSection[];
-
-
-export interface IConfig {
-    key: string,
-    value: string,
-}
-export type ConfigType = IConfig[];
-export type KeyType = "voteEnd"

@@ -11,6 +11,7 @@ type MainStackParamList = {
   SettingsScreen: undefined;
   EditPassScreen: undefined;
   EditInfoScreen: undefined;
+  LeaderboardScreen: undefined;
 };
 
 export type AuthScreenProps = NativeStackScreenProps<AuthStackParamList, 'AuthScreen'>;  
@@ -21,3 +22,4 @@ export type ProfileScreenProps = NativeStackScreenProps<MainStackParamList, 'Pro
 export type SettingsScreenProps = NativeStackScreenProps<MainStackParamList, 'SettingsScreen'>;  
 export type EditPassScreenProps = NativeStackScreenProps<MainStackParamList, 'EditPassScreen'>;  
 export type EditInfoScreenProps = NativeStackScreenProps<MainStackParamList, 'EditInfoScreen'>;  
+export type LeaderboardScreenProps = NativeStackScreenProps<MainStackParamList, 'LeaderboardScreen'>;

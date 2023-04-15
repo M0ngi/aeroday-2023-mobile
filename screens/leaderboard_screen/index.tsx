@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import GlobalStyles from "../../consts/styles";
@@ -10,6 +10,7 @@ import Colors from "../../consts/colors";
 import LeaderboardSection from "../../components/leaderboard_section";
 import { ChallengeType } from "../../types";
 import TopBar from "../../components/top_bar";
+import { LeaderboardScreenProps } from "../../navigation/types";
 
 
 const SECTIONS: ChallengeType[] = [
@@ -17,7 +18,7 @@ const SECTIONS: ChallengeType[] = [
   "Videographie"
 ]
 
-export default function ProfileScreen(){
+export default function LeaderboardScreen({navigation} : LeaderboardScreenProps){
   const [currentSection, setCurrentSection] = useState(0);
 
   const setAirshow = () => {

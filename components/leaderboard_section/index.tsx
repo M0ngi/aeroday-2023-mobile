@@ -8,9 +8,11 @@ import { screenHeight, screenWidth } from "../../utils/size_config";
 import Icon from 'react-native-vector-icons/Entypo';
 import DroneIcon from "../icons/drone_icon";
 import PlaneIcon from "../icons/plane_icon";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useFocusEffect } from "@react-navigation/native";
 
 interface ILeaderboardSection{
-    challenge: ChallengeType
+    challenge: ChallengeType;
 }
 
 const TeamColors = [
@@ -30,6 +32,10 @@ export default function LeaderboardSection({challenge} : ILeaderboardSection){
     useEffect(() => {
         leaderboard.refetch()
     }, [challenge])
+
+    useFocusEffect(()=> {
+        leaderboard.refetch();
+    })
 
     useEffect(() => {
         if(leaderboard.data){

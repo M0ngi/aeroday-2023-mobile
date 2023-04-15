@@ -3,7 +3,7 @@ import { AuthContext } from "../../context/auth_context/auth_context";
 import useAxios from "../axios";
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError, AxiosResponse } from 'axios';
-import { Response } from "../types";
+import { Response, ResponseError } from "../types";
 import { AppContext } from "../../context/app_context/app_context";
 import { AppAct } from "../../context/app_context/types";
 import { AuthAct } from "../../context/auth_context/types";
@@ -29,17 +29,15 @@ export function useVDPVote() {
             dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId})
             dispatchApp({ type: AppAct.INFO, payload: { info: "Your vote has been submitted." } })
         },
-        onError: (error: AxiosError<Response<string>>) => {
-            let errorMsg = error.response.data.data;
-            if(error.response.status == 403){
-                errorMsg = "Please verify your email. An activation email has been sent."
+        onError: (error: ResponseError<any>) => {
+            if(error.response.data.data){
+                dispatchApp({
+                    type: AppAct.ERROR,
+                    payload: {
+                        error: error.response.data.data
+                    }
+                })
             }
-            dispatchApp({
-                type: AppAct.ERROR,
-                payload: {
-                    error: errorMsg
-                }
-            })
         },
         cacheTime: 0,
         retry: 0,

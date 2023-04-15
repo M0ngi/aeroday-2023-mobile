@@ -1,3 +1,4 @@
+import { useFocusEffect } from "@react-navigation/native";
 import { useContext } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { AppContext } from "../../../context/app_context/app_context";
@@ -31,6 +32,10 @@ export default function VoteSection({ challenge }: IVoteSection){
         }
     }
     const { data } = hooks[challenge].participants
+
+    useFocusEffect(() => {
+        hooks[challenge].participants.refetch();
+    })
 
     const { dispatchApp } = useContext(AppContext)
     const { auth } = useContext(AuthContext)

@@ -7,6 +7,7 @@ import { AuthAct } from "../context/auth_context/types";
 import loadUser from "../hooks/auth/load_user";
 import { AppContext } from "../context/app_context/app_context";
 import { AppAct } from "../context/app_context/types";
+import { navigationRef } from "./root_navigation";
 
 
 export default function Navigation(){
@@ -25,7 +26,7 @@ export default function Navigation(){
   }, [isLoading])
   
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       {
         auth.user ? <MainNavigator /> : <AuthNavigator />
       }
