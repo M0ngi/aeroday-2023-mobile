@@ -14,6 +14,7 @@ import LoadingScreen from './screens/loading_screen';
 import { AppAct } from './context/app_context/types';
 import { useFonts } from 'expo-font';
 import { ResponsiveCheckView } from "react-native-responsive-checker";
+import AlertsScreen from './screens/alerts_screen';
 
 const queryClient = new QueryClient()
 
@@ -54,37 +55,13 @@ export default function App() {
           <AppConsumer>
             {
               (context) => {
-                if (context.appState.error) {
-                  Alert.alert("Error", context.appState.error, [
-                    {
-                      text: "Exit"
-                    }
-                  ], {
-                    onDismiss: () => {
-                      context.dispatchApp({ type: AppAct.RESET })
-                    },
-                    cancelable: true
-                  })
-                }
-
-                if (context.appState.info) {
-                  Alert.alert("Info", context.appState.info, [
-                    {
-                      text: "Ok"
-                    }
-                  ], {
-                    onDismiss: () => {
-                      context.dispatchApp({ type: AppAct.RESET })
-                    },
-                    cancelable: true
-                  })
-                }
                 return (
                   <>
                     <AuthProvider>
                       <Navigation />
                     </AuthProvider>
                     {context.appState.loading && <LoadingScreen />}
+                    <AlertsScreen />
                   </>
                 )
               }

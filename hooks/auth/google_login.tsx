@@ -43,7 +43,7 @@ export function useGoogleLogin() {
 		},
 		onError: (error) => {
 			logout.mutate();
-			dispatchApp({type: AppAct.ERROR, payload: { error: "Unable to login using Gmail. Try again." }})
+			dispatchApp({type: AppAct.ERROR, payload: "Unable to login using Gmail. Try again."})
 			// notify({ type: 'error', message: error.response?.data.message });
 		},
 		retry: 2,
