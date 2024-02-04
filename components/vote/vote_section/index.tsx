@@ -15,14 +15,13 @@ import AirshowDescription from "../../vote/vote_descriptions/airshow_description
 import VdpDescription from "../../vote/vote_descriptions/vdp_description";
 import VoteTeamDisplay from "./../vote_team_display";
 
-import * as Location from 'expo-location';
 
-interface IVoteSection{
+interface IVoteSection {
     challenge: ChallengeType;
     navigation: NativeStackNavigationProp<any>;
 }
 
-export default function VoteSection({ challenge, navigation }: IVoteSection){
+export default function VoteSection({ challenge, navigation }: IVoteSection) {
     const hooks = {
         "Airshow": {
             "vote": useAirshowVote(),
@@ -37,7 +36,7 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
     }
     const { data } = hooks[challenge].participants
 
-    useEffect(()=>{
+    useEffect(() => {
         const unsubListener = navigation.addListener("focus", () => {
             hooks[challenge].participants.refetch();
         })
@@ -47,41 +46,28 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
     const { dispatchApp } = useContext(AppContext)
     const { auth } = useContext(AuthContext)
 
-    useEffect(() => {
-        (async () => {
-          let { status } = await Location.requestForegroundPermissionsAsync();
-          if (status !== 'granted') {
-            dispatchApp({type: AppAct.ERROR, payload: 'Permission to access location was denied.'})
-            return;
-          }
-        })();
-    }, []);
-
     return (
         <ScrollView>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.teamsContainer}>
                 {data && data.map((participant, idx) => {
                     return (
                         <View style={styles.teamDisplay} key={idx}>
-                            <VoteTeamDisplay 
+                            <VoteTeamDisplay
                                 onVote={async () => {
-                                    if(auth.user.airshowVote == participant._id){
-                                        dispatchApp({type: AppAct.ERROR, payload: "Vote is already submitted."})
+                                    if (auth.user.airshowVote == participant._id) {
+                                        dispatchApp({ type: AppAct.ERROR, payload: "Vote is already submitted." })
                                         return;
                                     }
-                                    if(!auth.user.verified){
-                                        dispatchApp({type: AppAct.ERROR, payload: "Verify your email in order to vote."})
+                                    if (!auth.user.verified) {
+                                        dispatchApp({ type: AppAct.ERROR, payload: "Verify your email in order to vote." })
                                         return;
                                     }
-
-                                    let location = await Location.getCurrentPositionAsync({});
 
                                     hooks[challenge].vote.mutate({
                                         teamId: participant._id,
-                                        location
                                     })
-                                }} 
-                                team={participant} 
+                                }}
+                                team={participant}
                                 index={idx}
                             />
                             {hooks[challenge].description(participant)}
@@ -89,7 +75,7 @@ export default function VoteSection({ challenge, navigation }: IVoteSection){
                     )
                 })}
                 {/* Used for left side padding */}
-                <View style={{width: screenWidth(.1), height: "50%"}}></View>
+                <View style={{ width: screenWidth(.1), height: "50%" }}></View>
             </ScrollView>
         </ScrollView>
     )
@@ -99,14 +85,14 @@ const styles = StyleSheet.create({
     teamsContainer: {
         width: screenWidth(),
         height: screenHeight(.8),
-        flexGrow:0,
+        flexGrow: 0,
         marginTop: 20,
         alignSelf: "center",
 
         paddingLeft: screenWidth(.05),
     },
     teamDisplay: {
-        width: screenWidth(.85), 
+        width: screenWidth(.85),
         height: "100%",
     },
 })

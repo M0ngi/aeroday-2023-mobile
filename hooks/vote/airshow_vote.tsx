@@ -15,7 +15,7 @@ export function useAirshowVote() {
 
     return useMutation({
         mutationKey: ['user', 'airshow', 'vote'],
-        mutationFn: ({teamId, location}: IVote) => {
+        mutationFn: ({ teamId }: IVote) => {
             const path = '/vote/aishow/' + teamId
             const result = axios
                 .post(path)
@@ -25,12 +25,12 @@ export function useAirshowVote() {
                     },)
             return result
         },
-        onSuccess: ({teamId}) => {
-            dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId})
+        onSuccess: ({ teamId }) => {
+            dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId })
             dispatchApp({ type: AppAct.INFO, payload: "Your vote has been submitted." })
         },
         onError: (error: ResponseError<any>) => {
-            if(error.response.data.data){
+            if (error.response.data.data) {
                 dispatchApp({
                     type: AppAct.ERROR,
                     payload: error.response.data.data

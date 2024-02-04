@@ -17,12 +17,8 @@
       "fallbackToCacheTimeout": 0
     },
     "plugins": [
-      [
-        "expo-location",
-        {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
-        }
-      ]
+      "expo-font",
+      "expo-secure-store"
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -36,7 +32,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.aeroday.vote2023",
-      "versionCode": 3
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/logo.png"

@@ -15,8 +15,7 @@ export function useVDPVote() {
 
     return useMutation({
         mutationKey: ['user', 'airshow', 'vdp'],
-        mutationFn: ({teamId, location}: IVote) => {
-            console.log(location)
+        mutationFn: ({ teamId }: IVote) => {
             const result = axios
                 .post(`/vote/videographie/${teamId}`)
                 .then(
@@ -25,12 +24,12 @@ export function useVDPVote() {
                     },)
             return result
         },
-        onSuccess: ({teamId}) => {
-            dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId})
+        onSuccess: ({ teamId }) => {
+            dispatchAuth({ type: AuthAct.VOTE_AIRSHOW, payload: teamId })
             dispatchApp({ type: AppAct.INFO, payload: "Your vote has been submitted." })
         },
         onError: (error: ResponseError<any>) => {
-            if(error.response.data.data){
+            if (error.response.data.data) {
                 dispatchApp({
                     type: AppAct.ERROR,
                     payload: error.response.data.data
