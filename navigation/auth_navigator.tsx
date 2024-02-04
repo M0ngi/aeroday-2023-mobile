@@ -5,11 +5,11 @@ import ResetPassScreen from "../screens/auth/resetpass_screen";
 
 const authStack = createNativeStackNavigator();
 
-export default function AuthNavigator(){
+export default function AuthNavigator() {
   return (
     <authStack.Navigator initialRouteName="AuthScreen">
-      <authStack.Screen name="AuthScreen" component={AuthScreen} options={{headerShown: false}} />
-      <authStack.Screen name="ResetPassScreen" component={ResetPassScreen} options={{headerShown: false}} />
+      <authStack.Screen name="AuthScreen" component={AuthScreen} options={{ headerShown: false }} />
+      <authStack.Screen name="ResetPassScreen" component={ResetPassScreen} options={{ headerShown: false }} />
     </authStack.Navigator>
   )
 }

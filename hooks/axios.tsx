@@ -25,19 +25,19 @@ const useAxios = () => {
 		});
 
 		instance.interceptors.request.use((request) => {
-			if(!request.headers.get("repeat"))
-				dispatchApp({type: AppAct.LOAD_ON})
+			if (!request.headers.get("repeat"))
+				dispatchApp({ type: AppAct.LOAD_ON })
 
 			return request;
 		})
 
 		instance.interceptors.response.use((response) => {
-			dispatchApp({type: AppAct.LOAD_OFF})
+			dispatchApp({ type: AppAct.LOAD_OFF })
 			return response;
 		}, async (error: AxiosError<Response<string>>) => {
-			dispatchApp({type: AppAct.LOAD_OFF})
+			dispatchApp({ type: AppAct.LOAD_OFF })
 
-			switch(error.response.status){
+			switch (error.response.status) {
 				case HTTP_UNAUTHORIZED: {
 					await refreshToken.mutateAsync();
 					// @ts-ignore
@@ -55,7 +55,7 @@ const useAxios = () => {
 				case HTTP_LOCKED: {
 					navigate("HomeScreen")
 					dispatchApp({
-						type: AppAct.ERROR, 
+						type: AppAct.ERROR,
 						payload: error.response.data.data
 					})
 					error.response.data.data = null;

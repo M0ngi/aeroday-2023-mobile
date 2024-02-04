@@ -10,21 +10,21 @@ import { AppAct } from "../context/app_context/types";
 import { navigationRef } from "./root_navigation";
 
 
-export default function Navigation(){
+export default function Navigation() {
   const { auth } = useContext(AuthContext);
   const { appState, dispatchApp } = useContext(AppContext);
-  const {isError, isLoading, userData} = loadUser();
-  const {dispatchAuth} = useContext(AuthContext);
+  const { isError, isLoading, userData } = loadUser();
+  const { dispatchAuth } = useContext(AuthContext);
 
-  useEffect(()=>{
-    dispatchAuth({type: AuthAct.RESTORE, payload: userData})
+  useEffect(() => {
+    dispatchAuth({ type: AuthAct.RESTORE, payload: userData })
   }, [userData])
 
-  useEffect(()=>{
-    if(isLoading) dispatchApp({type: AppAct.LOAD_ON})
-    else dispatchApp({type: AppAct.LOAD_OFF})
+  useEffect(() => {
+    if (isLoading) dispatchApp({ type: AppAct.LOAD_ON })
+    else dispatchApp({ type: AppAct.LOAD_OFF })
   }, [isLoading])
-  
+
   return (
     <NavigationContainer ref={navigationRef}>
       {

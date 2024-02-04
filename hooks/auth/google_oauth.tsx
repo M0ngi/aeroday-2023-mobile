@@ -11,24 +11,24 @@ WebBrowser.maybeCompleteAuthSession();
 export type AuthStatus = "cancel" | "dismiss" | "opened" | "locked" | "error" | "success" | "idle";
 
 export function useGoogleOAuth() {
-  const [request, response, promptAsync] = Google.useAuthRequest(googleAuthConf);
+  const [request, response, promptAsync] = Google.useAuthRequest(googleAuthConf, { projectNameForProxy: '@m0ngi/aeroday-2023' });
 
   const [status, setStatus] = useState<AuthStatus>("idle");
   const [error, setError] = useState<AuthError>(null);
 
   const googleLogin = useGoogleLogin();
 
-  useEffect(()=>{
+  useEffect(() => {
     if (response && response.type !== status) {
       setStatus(response.type);
     }
 
-    if(response?.type === "success"){
+    if (response?.type === "success") {
       googleLogin.mutate({
         oauthToken: response.authentication.accessToken,
       })
     }
-    else if(response?.type === "error"){
+    else if (response?.type === "error") {
       setError(response.error);
     }
   }, [response])

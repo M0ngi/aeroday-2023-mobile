@@ -8,7 +8,7 @@ import Colors from "../../../consts/colors";
 import GlobalStyles from "../../../consts/styles";
 import { AuthScreenProps } from "../../../navigation/types";
 
-export default function AuthScreen({ navigation } : AuthScreenProps){
+export default function AuthScreen({ navigation }: AuthScreenProps) { // 
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   const showLoginSection = () => {
@@ -24,10 +24,10 @@ export default function AuthScreen({ navigation } : AuthScreenProps){
         <Image style={style.logo} source={require("./../../../assets/Images/logo.png")} />
       </View>
       <View style={style.container}>
-        <View style={{height: "15%"}}>
+        <View style={{ height: "15%" }}>
           <AuthNavButtons onSelectLogin={showLoginSection} onSelectRegister={showRegisterSection} />
         </View>
-        <View style={{height: "85%"}}>
+        <View style={{ height: "85%" }}>
           {selectedIdx == 0 ? <LoginSection navigation={navigation} /> : <SignupSection />}
         </View>
       </View>
@@ -36,7 +36,7 @@ export default function AuthScreen({ navigation } : AuthScreenProps){
 }
 
 const style = StyleSheet.create({
-  logo:{
+  logo: {
     width: "80%",
     resizeMode: "contain"
   },
@@ -47,7 +47,7 @@ const style = StyleSheet.create({
     borderTopLeftRadius: 50,
     borderTopRightRadius: 50,
   },
-  logoContainer:{
+  logoContainer: {
     width: "100%",
     height: "30%",
     backgroundColor: "transparent",
