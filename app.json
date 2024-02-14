@@ -1,19 +1,25 @@
 {
   "expo": {
-    "name": "aeroday-2023",
+    "name": "Aeroday 2023",
     "slug": "aeroday-2023",
+    "owner": "aeroday",
+    "scheme": "aero",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/Images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    "plugins": [
+      "expo-font",
+      "expo-secure-store"
+    ],
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -22,12 +28,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.aeroday.vote2023",
+      "versionCode": 5
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/logo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e1e4bc88-328d-4762-9993-f5ba3117058c"
+      }
     }
   }
 }
