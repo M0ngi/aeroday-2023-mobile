@@ -28,7 +28,6 @@
   "submit": {
     "production": {
       "android": {
-        "serviceAccountKeyPath": "./service-acc-api.json.json",
         "track": "production",
         "releaseStatus": "completed"
       }
