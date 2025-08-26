@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 2.0.6 (2025-08-26)
+
+
+### Bug Fixes
+
+* remove google auth ([26b9b28](https://github.com/M0ngi/aeroday-2023-mobile/commit/26b9b28faea95430d6b5fcf6e46bf73b8d353ffa))
+
 ## 2.0.5 (2025-08-26)
 
 
