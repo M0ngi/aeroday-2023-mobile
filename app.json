@@ -2,7 +2,7 @@
   "expo": {
     "name": "Aeroday 2023",
     "slug": "aeroday-2023",
-    "owner": "aeroday",
+    "owner": "m0ngi",
     "scheme": "aero",
     "version": "2.0.2",
     "orientation": "portrait",
@@ -41,7 +41,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "eec98369-6062-47c3-94d7-526f6aeea729"
+        "projectId": "e1e4bc88-328d-4762-9993-f5ba3117058c"
       }
     }
   }
