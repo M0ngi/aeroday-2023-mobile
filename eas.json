@@ -20,8 +20,8 @@
       }
     },
     "production": {
-      "ios": {
-        "resourceClass": "m-medium"
+      "android": {
+        "buildType": "apk"
       }
     }
   },
@@ -29,7 +29,8 @@
     "production": {
       "android": {
         "serviceAccountKeyPath": "./service-acc-api.json.json",
-        "track": "internal"
+        "track": "production",
+        "releaseStatus": "completed"
       }
     }
   }
