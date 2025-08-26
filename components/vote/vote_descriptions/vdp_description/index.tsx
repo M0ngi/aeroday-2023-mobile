@@ -1,6 +1,6 @@
-import { ResizeMode, Video } from "expo-av";
 import { StyleSheet, View } from "react-native";
 import { ParticipantTeam } from "../../../../types";
+import { Text } from 'react-native';
 
 interface IVdpDescription{
     participant: ParticipantTeam;
@@ -9,14 +9,15 @@ interface IVdpDescription{
 export default function VdpDescription({participant}: IVdpDescription){
     return (
         <View>
-            <Video
+            <Text>WIP</Text>
+            {/* <Video
                 source={{
                     uri: participant.vdpVid ?? "https://www.aeroday.tn/aftermovie.mp4"
                 }}
                 style={styles.videoStyle}
                 useNativeControls
                 resizeMode={ResizeMode.COVER}
-            />
+            /> */}
         </View>
     )
 }
