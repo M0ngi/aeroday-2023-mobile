@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, Button, TouchableOpacity, Image, StyleSheet } from "react-native";
-import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
+// import { useGoogleOAuth } from "../../../hooks/auth/google_oauth";
 import { useSignUp } from "../../../hooks/auth/signup";
 import InputBox from "../../InputBox";
 import RoundedButton from "../../RoundedButton";
@@ -10,7 +10,7 @@ export default function SignupScreen() {
   const [password, setPassword] = useState("");
   const [fullname, setFullName] = useState("");
   const signup = useSignUp()
-  const googleAuth = useGoogleOAuth();
+  // const googleAuth = useGoogleOAuth();
 
   const signupHandler = () => {
     signup.mutate({
@@ -20,9 +20,9 @@ export default function SignupScreen() {
     })
   }
 
-  const googleLoginHandler = () => {
-    googleAuth.login()
-  }
+  // const googleLoginHandler = () => {
+  //   googleAuth.login()
+  // }
 
   return (
     <View style={style.container}>
@@ -33,9 +33,9 @@ export default function SignupScreen() {
         </View>
 
         <RoundedButton onPress={signupHandler} style={{width: "60%", fontSize: 24}} text="Signup" />
-        <TouchableOpacity onPress={googleLoginHandler}>
+        {/* <TouchableOpacity onPress={googleLoginHandler}>
             <Image source={require("./../../../assets/Images/Google.png")} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
     
     </View>
 )
