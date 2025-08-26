@@ -8,6 +8,9 @@ on:
 
 jobs:
   release:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
 
     steps:
@@ -30,16 +33,16 @@ jobs:
       - name: Run release
         run: npm run release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push changes and tags
         run: git push --follow-tags
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create GitHub Release with Auto-Generated Notes
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           VERSION_TAG=$(git describe --tags --abbrev=0)
 
