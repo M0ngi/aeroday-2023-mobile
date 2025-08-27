@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 2.0.7 (2025-08-27)
+
+
+### Bug Fixes
+
+* change buildtype ([b3c5469](https://github.com/M0ngi/aeroday-2023-mobile/commit/b3c5469afa01287c30f328b80cefa5018e09c0e2))
+
 ## 2.0.6 (2025-08-26)
 
 
