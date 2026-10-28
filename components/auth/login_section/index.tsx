@@ -42,7 +42,7 @@ export default function LoginSection({navigation}: any){
                 <InputBox value={email} onChange={setEmail} placeholder="Email" />
                 <InputBox secureTextEntry={true} value={password} onChange={setPassword} placeholder="Password" />
 
-                <Text style={style.resetpass} onPress={() => navigation.navigate("ResetPassScreen")}>Reset Password</Text>
+                <Text style={style.resetpass} onPress={() => navigation.navigate("ResetPassScreen")}>Lost Password? Reset!</Text>
             </View>
 
             <RoundedButton onPress={loginHandler} style={{width: "60%", fontSize: 24}} text="Login" />
