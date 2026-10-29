@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## 2.1.0 (2026-10-29)
+
+
+### Features
+
+* upgrade ([3290349](https://github.com/M0ngi/aeroday-2023-mobile/commit/329034951215951208229eb78056294be10f15af))
+
 ## 2.0.9 (2026-10-28)
 
 ## 2.0.8 (2026-04-28)
