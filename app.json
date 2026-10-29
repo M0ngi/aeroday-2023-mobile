@@ -4,7 +4,7 @@
     "slug": "aeroday-2023",
     "owner": "m0ngi",
     "scheme": "aero",
-    "version": "2.1.1",
+    "version": "2.1.2",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
@@ -38,7 +38,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.aeroday.vote2023",
-      "versionCode": 16
+      "versionCode": 17
     },
     "web": {
       "favicon": "./assets/logo.png"
