@@ -41,7 +41,7 @@ export default function App() {
     return (
       <View>
         <Text>
-          You are offline
+          No internet connection!
         </Text>
       </View>
     );
