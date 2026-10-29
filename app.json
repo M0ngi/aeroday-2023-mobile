@@ -8,17 +8,22 @@
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/Images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "plugins": [
       "expo-font",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/Images/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-status-bar",
+      "expo-web-browser"
     ],
     "assetBundlePatterns": [
       "**/*"
@@ -33,8 +38,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.aeroday.vote2023",
-      "versionCode": 14,
-      "targetSdkVersion": 35
+      "versionCode": 14
     },
     "web": {
       "favicon": "./assets/logo.png"
