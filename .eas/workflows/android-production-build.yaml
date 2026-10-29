@@ -11,3 +11,10 @@ jobs:
     params:
       platform: android
       profile: production
+
+  submit_android_production:
+    needs: [build_android_production]
+    type: submit
+    params:
+      platform: android
+      profile: production
